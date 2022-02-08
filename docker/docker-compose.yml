@@ -9,9 +9,6 @@ services:
     container_name: ${COMPOSE_APP_NAME}-php-fpm
     restart: always
     tty: true
-    environment:
-      SERVICE_NAME: app
-      SERVICE_TAGS: dev
     working_dir: /var/www/api-server-afisha.kz
     volumes:
        - ${AFISHA_API_PATH}/:/var/www/api-server-afisha.kz
@@ -48,8 +45,6 @@ services:
     environment:
       MYSQL_DATABASE: afisha
       MYSQL_ROOT_PASSWORD: root
-      SERVICE_TAGS: dev
-      SERVICE_NAME: mysql
     volumes:
       - dbdata:/var/lib/mysql/
       - ./services/mysql/config/my.cnf:/etc/mysql/my.cnf
