@@ -1,0 +1,67 @@
+version: '3.8'
+services:
+  
+  #PHP Service
+  afisha-api-php-fpm:
+    build:
+      context: ./services/php_8.1
+      dockerfile: Dockerfile
+    container_name: ${COMPOSE_APP_NAME}-php-fpm
+    restart: always
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www/api-server-afisha.kz
+    volumes:
+       - ${AFISHA_API_PATH}/:/var/www/api-server-afisha.kz
+       - ./services/php_8.1/config/php.ini:/usr/local/etc/php/conf.d/php.ini
+    networks:
+      - app-network
+
+  #Nginx Service
+  afisha-api-nginx:
+    build:
+      context: ./services/nginx
+      dockerfile: Dockerfile
+    container_name: ${COMPOSE_APP_NAME}-nginx
+    restart: always
+    tty: true
+    ports:
+      - ${AFISHA_API_PORT_MAP}
+    working_dir: /var/www
+    volumes:
+      - ${AFISHA_API_PATH}/:/var/www/api-server-afisha.kz
+    networks:
+      - app-network
+
+  #MySQL Service
+  afisha-api-mysql:
+    build:
+      context: ./services/mysql
+      dockerfile: Dockerfile
+    container_name: ${COMPOSE_APP_NAME}-mysql
+    restart: always
+    tty: true
+    ports:
+      - ${AFISHA_API_MYSQL_PORT_MAP}
+    environment:
+      MYSQL_DATABASE: afisha
+      MYSQL_ROOT_PASSWORD: root
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - dbdata:/var/lib/mysql/
+      - ./services/mysql/config/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - app-network
+
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge
+
+#Volumes
+volumes:
+  dbdata:
+    driver: local

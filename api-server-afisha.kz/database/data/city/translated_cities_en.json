@@ -1,0 +1,202 @@
+[
+    {
+        "translated_name": "Aksay",
+        "language_id": 1,
+        "city_id": 1
+    },
+    {
+        "translated_name": "Aksoran",
+        "language_id": 1,
+        "city_id": 2
+    },
+    {
+        "translated_name": "Almaty",
+        "language_id": 1,
+        "city_id": 3
+    },
+    {
+        "translated_name": "Aqtas",
+        "language_id": 1,
+        "city_id": 4
+    },
+    {
+        "translated_name": "Aqtau",
+        "language_id": 1,
+        "city_id": 5
+    },
+    {
+        "translated_name": "Astana",
+        "language_id": 1,
+        "city_id": 6
+    },
+    {
+        "translated_name": "Atyrau",
+        "language_id": 1,
+        "city_id": 7
+    },
+    {
+        "translated_name": "Baikonur",
+        "language_id": 1,
+        "city_id": 8
+    },
+    {
+        "translated_name": "Dostyk",
+        "language_id": 1,
+        "city_id": 9
+    },
+    {
+        "translated_name": "Dzhezkazgan",
+        "language_id": 1,
+        "city_id": 10
+    },
+    {
+        "translated_name": "Ekibastuz",
+        "language_id": 1,
+        "city_id": 11
+    },
+    {
+        "translated_name": "Esil",
+        "language_id": 1,
+        "city_id": 12
+    },
+    {
+        "translated_name": "Karagandy",
+        "language_id": 1,
+        "city_id": 13
+    },
+    {
+        "translated_name": "Kazakh",
+        "language_id": 1,
+        "city_id": 14
+    },
+    {
+        "translated_name": "Kentau",
+        "language_id": 1,
+        "city_id": 15
+    },
+    {
+        "translated_name": "Koktem",
+        "language_id": 1,
+        "city_id": 16
+    },
+    {
+        "translated_name": "Kostanay",
+        "language_id": 1,
+        "city_id": 17
+    },
+    {
+        "translated_name": "Kyzyl",
+        "language_id": 1,
+        "city_id": 18
+    },
+    {
+        "translated_name": "Kyzylorda",
+        "language_id": 1,
+        "city_id": 19
+    },
+    {
+        "translated_name": "Lomonosovka",
+        "language_id": 1,
+        "city_id": 20
+    },
+    {
+        "translated_name": "Oral",
+        "language_id": 1,
+        "city_id": 21
+    },
+    {
+        "translated_name": "Pavlodar",
+        "language_id": 1,
+        "city_id": 22
+    },
+    {
+        "translated_name": "Petropavl",
+        "language_id": 1,
+        "city_id": 23
+    },
+    {
+        "translated_name": "Qaskelen",
+        "language_id": 1,
+        "city_id": 24
+    },
+    {
+        "translated_name": "Ridder",
+        "language_id": 1,
+        "city_id": 25
+    },
+    {
+        "translated_name": "Rudnyy",
+        "language_id": 1,
+        "city_id": 26
+    },
+    {
+        "translated_name": "Semey",
+        "language_id": 1,
+        "city_id": 27
+    },
+    {
+        "translated_name": "Serebryansk",
+        "language_id": 1,
+        "city_id": 28
+    },
+    {
+        "translated_name": "Shymkent",
+        "language_id": 1,
+        "city_id": 29
+    },
+    {
+        "translated_name": "Sonaly",
+        "language_id": 1,
+        "city_id": 30
+    },
+    {
+        "translated_name": "Stepnogorsk",
+        "language_id": 1,
+        "city_id": 31
+    },
+    {
+        "translated_name": "Taldykorgan",
+        "language_id": 1,
+        "city_id": 32
+    },
+    {
+        "translated_name": "Talghar",
+        "language_id": 1,
+        "city_id": 33
+    },
+    {
+        "translated_name": "Taraz",
+        "language_id": 1,
+        "city_id": 34
+    },
+    {
+        "translated_name": "Temirtau",
+        "language_id": 1,
+        "city_id": 35
+    },
+    {
+        "translated_name": "Turkestan",
+        "language_id": 1,
+        "city_id": 36
+    },
+    {
+        "translated_name": "Uritskiy",
+        "language_id": 1,
+        "city_id": 37
+    },
+    {
+        "translated_name": "Ust-Kamenogorsk",
+        "language_id": 1,
+        "city_id": 38
+    },
+    {
+        "translated_name": "Vostok",
+        "language_id": 1,
+        "city_id": 39
+    },
+    {
+        "translated_name": "Zyryanovsk",
+        "language_id": 1,
+        "city_id": 40
+    }
+]

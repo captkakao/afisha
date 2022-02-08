@@ -1,0 +1,162 @@
+[
+    {
+        "id": 1,
+        "slug": "aksay"
+    },
+    {
+        "id": 2,
+        "slug": "aksoran"
+    },
+    {
+        "id": 3,
+        "slug": "almaty"
+    },
+    {
+        "id": 4,
+        "slug": "aqtas"
+    },
+    {
+        "id": 5,
+        "slug": "aqtau"
+    },
+    {
+        "id": 6,
+        "slug": "astana"
+    },
+    {
+        "id": 7,
+        "slug": "atyrau"
+    },
+    {
+        "id": 8,
+        "slug": "baikonur"
+    },
+    {
+        "id": 9,
+        "slug": "dostyk"
+    },
+    {
+        "id": 10,
+        "slug": "dzhezkazgan"
+    },
+    {
+        "id": 11,
+        "slug": "ekibastuz"
+    },
+    {
+        "id": 12,
+        "slug": "esil"
+    },
+    {
+        "id": 13,
+        "slug": "karagandy"
+    },
+    {
+        "id": 14,
+        "slug": "kazakh"
+    },
+    {
+        "id": 15,
+        "slug": "kentau"
+    },
+    {
+        "id": 16,
+        "slug": "koktem"
+    },
+    {
+        "id": 17,
+        "slug": "kostanay"
+    },
+    {
+        "id": 18,
+        "slug": "kyzyl"
+    },
+    {
+        "id": 19,
+        "slug": "kyzylorda"
+    },
+    {
+        "id": 20,
+        "slug": "lomonosovka"
+    },
+    {
+        "id": 21,
+        "slug": "oral"
+    },
+    {
+        "id": 22,
+        "slug": "pavlodar"
+    },
+    {
+        "id": 23,
+        "slug": "petropavl"
+    },
+    {
+        "id": 24,
+        "slug": "qaskelen"
+    },
+    {
+        "id": 25,
+        "slug": "ridder"
+    },
+    {
+        "id": 26,
+        "slug": "rudnyy"
+    },
+    {
+        "id": 27,
+        "slug": "semey"
+    },
+    {
+        "id": 28,
+        "slug": "serebryansk"
+    },
+    {
+        "id": 29,
+        "slug": "shymkent"
+    },
+    {
+        "id": 30,
+        "slug": "sonaly"
+    },
+    {
+        "id": 31,
+        "slug": "stepnogorsk"
+    },
+    {
+        "id": 32,
+        "slug": "taldykorgan"
+    },
+    {
+        "id": 33,
+        "slug": "talghar"
+    },
+    {
+        "id": 34,
+        "slug": "taraz"
+    },
+    {
+        "id": 35,
+        "slug": "temirtau"
+    },
+    {
+        "id": 36,
+        "slug": "turkestan"
+    },
+    {
+        "id": 37,
+        "slug": "uritskiy"
+    },
+    {
+        "id": 38,
+        "slug": "ust-kamenogorsk"
+    },
+    {
+        "id": 39,
+        "slug": "vostok"
+    },
+    {
+        "id": 40,
+        "slug": "zyryanovsk"
+    }
+]
