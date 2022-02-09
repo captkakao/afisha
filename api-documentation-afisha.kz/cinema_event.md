@@ -18,7 +18,6 @@
 | data.* | `object` | Информация о событии | 
 | data.*.id | `number` | Идентификатор | 
 | data.*.title | `string` | Заголовок | 
-| data.*.description | `json` | Описание |
 | data.*.cinema_id | `number` | Идентификатор кинотеатра в котором проводится событие |
 | data.*.created_at | `datetime` | Дата создания |
 
@@ -28,7 +27,6 @@
     {
       "id": 1,
       "title": 1,
-      "description": "Some description",
       "cinema_id": 1,
       "created_at": "2021-11-22 15:00"
     }
@@ -52,8 +50,8 @@
 | data | `array` | Список событии | 
 | data.* | `object` | Информация о событии | 
 | data.*.id | `number` | Идентификатор | 
-| data.*.title | `string` | Заголовок | 
-| data.*.description | `json` | Описание |
+| data.*.title | `string` | Заголовок |  
+| data.*.cinema_id | `number` | Идентификатор кинотеатра |
 | data.*.created_at | `datetime` | Дата создания |
 
 ```json
@@ -62,7 +60,7 @@
     {
       "id": 1,
       "title": 1,
-      "description": "Some description",
+      "cinema_id": 1,
       "created_at": "2021-11-22 15:00"
     }
   ]
@@ -88,8 +86,7 @@
 ```json
 {
   "title": "Какое то событие",
-  "description": "Описание событии",
-  "cinema_id": 1
+  "description": "Описание событии"
 }
 ```
 
@@ -122,14 +119,13 @@
 | ------ | ------ | ------ | ------ |
 | title | `string` | Да | Заголовок событий |
 | description | `json` | Да | Описание событий |
-| cinema_id | `number` | Да | Идентификатор кинотеатра в котором проводится событие |
 
 #### Пример запроса
 
 ```json
 {
-  "name": "Зал 1",
-  "seat_config": "{...}"
+  "title": "Какое то событие",
+  "description": "Описание событии"
 }
 ```
 
