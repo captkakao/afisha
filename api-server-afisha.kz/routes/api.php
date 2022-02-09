@@ -32,10 +32,10 @@ Route::group(['prefix' => 'auth'], function () {
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::group(['prefix' => 'seance',], function () {
-        Route::post('', [SeanceController::class, 'create']);
-        Route::put('{seance}', [SeanceController::class, 'update']);
-        Route::put('{seance}/seat', [SeanceController::class, 'updateSeat']);
-        Route::delete('{seance}', [SeanceController::class, 'delete']);
+        Route::post('', [SeanceController::class, 'create']); //TODO policy
+        Route::put('{seance}', [SeanceController::class, 'update'])->middleware('can:update,seance');
+        Route::put('{seance}/seat', [SeanceController::class, 'updateSeat'])->middleware('can:updateSeat,seance');
+        Route::delete('{seance}', [SeanceController::class, 'delete'])->middleware('can:delete,seance');
     });
 
     Route::group(['prefix' => 'me',], function () {

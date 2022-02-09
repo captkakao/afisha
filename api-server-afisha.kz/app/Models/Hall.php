@@ -11,7 +11,11 @@ class Hall extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'seat_config_example', 'cinema_id'];
+    protected $fillable = [
+        'name',
+        'seat_config_example',
+        'cinema_id'
+    ];
 
     public function seances(): HasMany
     {
