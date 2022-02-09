@@ -18,7 +18,7 @@
 | price_vip | `number` | Нет | Цена для VIP |
 | show_time | `datetime` | Да | Дата и время показа сеанса |
 | movie_id | `number` | Да | Идентификатор фильма |
-| cinema_hall_id | `number` | Да | Идентификатор кинотеатра |
+| hall_id | `number` | Да | Идентификатор кинозала |
 
 #### Пример запроса
 
@@ -30,7 +30,7 @@
   "price_vip": 5000,
   "show_time": "2021-11-22 19:15",
   "movie_id": 1,
-  "cinema_hall_id": 1
+  "hall_id": 1
 }
 ```
 
@@ -61,13 +61,13 @@
 
 | Параметр | Тип | Обязательный | Описание |
 | ------ | ------ | ------ | ------ |
-| price_adult | `number` | Нет | Название кинозала |
-| price_kid | `number` | Нет | Расположение мест в кинозале |
-| price_student | `number` | Нет | Идентификатор кинотеатра |
-| price_vip | `number` | Нет | Идентификатор кинотеатра |
-| show_time | `datetime` | Да | Идентификатор кинотеатра |
-| movie_id | `number` | Да | Идентификатор кинотеатра |
-| cinema_hall_id | `number` | Да | Идентификатор кинотеатра |
+| price_adult | `number` | Нет | Цена для взрослых |
+| price_kid | `number` | Нет | Цена для детей |
+| price_student | `number` | Нет | Цена для студентов |
+| price_vip | `number` | Нет | Цена для VIP |
+| show_time | `datetime` | Да | Дата и время показа сеанса |
+| movie_id | `number` | Да | Идентификатор фильма |
+| hall_id | `number` | Да | Идентификатор кинозала |
 
 #### Пример запроса
 
@@ -79,7 +79,7 @@
   "price_vip": 5000,
   "show_time": "2021-11-22 19:15",
   "movie_id": 1,
-  "cinema_hall_id": 1
+  "hall_id": 1
 }
 ```
 
