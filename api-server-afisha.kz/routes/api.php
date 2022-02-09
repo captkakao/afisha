@@ -6,6 +6,7 @@ use App\Http\Controllers\Available\DateTimeController;
 use App\Http\Controllers\Cinema\CinemaController;
 use App\Http\Controllers\Event\EventController;
 use App\Http\Controllers\Hall\HallController;
+use App\Http\Controllers\Seance\SeanceController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,13 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 Route::middleware(['auth:sanctum'])->group(function () {
+    Route::group(['prefix' => 'seance',], function () {
+        Route::post('', [SeanceController::class, 'create']);
+        Route::put('{seance}', [SeanceController::class, 'update']);
+        Route::put('{seance}/seat', [SeanceController::class, 'updateSeat']);
+        Route::delete('{seance}', [SeanceController::class, 'delete']);
+    });
+
     Route::group(['prefix' => 'me',], function () {
         Route::get('', [UserController::class, 'me']);
         Route::put('', [UserController::class, 'updateProfile']);
@@ -68,9 +76,4 @@ Route::group(['prefix' => 'cinema',], function () {
     Route::get('{cinema}', [CinemaController::class, 'getCinema']);
     Route::get('{cinema}/seances', [CinemaController::class, 'getSeances']);
     Route::get('city/{city}', [CinemaController::class, 'getCityCinemas']);
-});
-
-Route::group(['prefix' => 'cinema', 'middleware' => ['auth:sanctum']], function () {
-
-
 });
