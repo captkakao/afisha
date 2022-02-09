@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Event extends Model
 {
@@ -11,7 +12,7 @@ class Event extends Model
 
     protected $fillable = ['title', 'description', 'cinema_id'];
 
-    public function cinema()
+    public function cinema(): BelongsTo
     {
         return $this->belongsTo(Cinema::class);
     }

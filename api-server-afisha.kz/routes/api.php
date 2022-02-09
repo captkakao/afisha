@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Available\CityController;
 use App\Http\Controllers\Available\DateTimeController;
 use App\Http\Controllers\Cinema\CinemaController;
+use App\Http\Controllers\Event\EventController;
 use App\Http\Controllers\Hall\HallController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -44,22 +45,32 @@ Route::get('cities', [CityController::class, 'index']);
 Route::get('today_tomorrow', [DateTimeController::class, 'getDateTime']);
 
 Route::group(['prefix' => 'cinema',], function () {
-    Route::get('{cinema}', [CinemaController::class, 'getCinema']);
-    Route::get('{cinema}/seances', [CinemaController::class, 'getSeances']);
-    Route::get('city/{city}', [CinemaController::class, 'getCityCinemas']);
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('', [CinemaController::class, 'getUserCinemas']);
         Route::post('', [CinemaController::class, 'create']);
         Route::put('{cinema}', [CinemaController::class, 'update'])->middleware('can:update,cinema');
         Route::delete('{cinema}', [CinemaController::class, 'delete'])->middleware('can:delete,cinema');
+
+        Route::get('{cinema}/hall', [HallController::class, 'getHalls']);
+        Route::post('{cinema}/hall', [HallController::class, 'createHall'])->middleware('can:createHall,cinema');
+        Route::prefix('hall')->group(function () {
+            Route::put('{hall}', [HallController::class, 'updateHall'])->middleware('can:update,hall');
+            Route::delete('{hall}', [HallController::class, 'deleteHall'])->middleware('can:delete,hall');
+        });
+        Route::prefix('event')->group(function () {
+            Route::get('', [EventController::class, 'getAllEvents']);
+            Route::put('{event}', [EventController::class, 'update'])->middleware('can:update,event');
+            Route::delete('{event}', [EventController::class, 'delete'])->middleware('can:delete,event');
+            Route::get('{cinema}/event', [EventController::class, 'getEventsByCinema']);
+            Route::post('{cinema}/event', [EventController::class, 'create'])->middleware('can:createEvent,cinema');
+        });
     });
+    Route::get('{cinema}', [CinemaController::class, 'getCinema']);
+    Route::get('{cinema}/seances', [CinemaController::class, 'getSeances']);
+    Route::get('city/{city}', [CinemaController::class, 'getCityCinemas']);
 });
 
 Route::group(['prefix' => 'cinema', 'middleware' => ['auth:sanctum']], function () {
-    Route::get('{cinema}/hall', [HallController::class, 'getHalls']);
-    Route::post('{cinema}/hall', [HallController::class, 'createHall'])->middleware('can:createHall,cinema');
-    Route::prefix('hall')->group(function () {
-        Route::put('{hall}', [HallController::class, 'updateHall'])->middleware('can:update,hall');
-        Route::delete('{hall}', [HallController::class, 'deleteHall'])->middleware('can:delete,hall');
-    });
+
+
 });

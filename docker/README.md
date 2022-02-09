@@ -37,6 +37,11 @@ FLUSH PRIVILEGES;
 ```shell
 EXIT;
 ```
+
+```shell
+exit
+```
+
 After database installation run sh file
 
 ```shell

@@ -15,6 +15,11 @@ class CinemaPolicy
         return $user->id === $cinema->user_id;
     }
 
+    public function createEvent(User $user, Cinema $cinema): bool
+    {
+        return $user->id === $cinema->user_id;
+    }
+
     public function update(User $user, Cinema $cinema): bool
     {
         return $user->id === $cinema->user_id;

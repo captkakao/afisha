@@ -15,7 +15,7 @@ class HallPolicy
         return $user->id === $hall->cinema->user_id;
     }
 
-    public function delete(User $user, Hall $hall)
+    public function delete(User $user, Hall $hall): bool
     {
         return $user->id === $hall->cinema->user_id;
     }
