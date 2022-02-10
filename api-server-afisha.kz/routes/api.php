@@ -67,6 +67,7 @@ Route::group(['prefix' => 'cinema',], function () {
         });
         Route::prefix('event')->group(function () {
             Route::get('', [EventController::class, 'getAllEvents']);
+            Route::post('images', [EventController::class, 'uploadImages']);
             Route::put('{event}', [EventController::class, 'update'])->middleware('can:update,event');
             Route::delete('{event}', [EventController::class, 'delete'])->middleware('can:delete,event');
             Route::get('{cinema}/event', [EventController::class, 'getEventsByCinema']);

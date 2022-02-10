@@ -8,6 +8,7 @@ use App\Http\Requests\Event\UpdateEventRequest;
 use App\Http\Resources\Event\EventCollection;
 use App\Models\Cinema;
 use App\Models\Event;
+use App\Services\Image\ImageUploaderService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -47,5 +48,13 @@ class EventController extends Controller
     {
         $event->delete();
         return response(null, Response::HTTP_NO_CONTENT);
+    }
+
+    public function uploadImages(Request $request, ImageUploaderService $imageUploaderService)
+    {
+        $imageFiles = $request->file('images');
+
+        $images = $imageUploaderService->uploadArray($imageFiles);
+        return $images;
     }
 }
