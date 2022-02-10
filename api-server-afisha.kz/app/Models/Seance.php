@@ -18,6 +18,7 @@ class Seance extends Model
         'price_vip',
         'movie_id',
         'hall_id',
+        'seat_config',
     ];
 
     public function hall(): BelongsTo

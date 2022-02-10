@@ -101,6 +101,7 @@ class TestSeeder extends Seeder
                 'price_vip' => 5000,
                 'movie_id' => 1,
                 'hall_id' => 1,
+                'seat_config' => Hall::where('id', 1)->value('seat_config_example'),
             ],
             [
                 'show_time' => Carbon::now()->addDay(),
@@ -110,6 +111,7 @@ class TestSeeder extends Seeder
                 'price_vip' => 5000,
                 'movie_id' => 1,
                 'hall_id' => 2,
+                'seat_config' => Hall::where('id', 2)->value('seat_config_example'),
             ],
             [
                 'show_time' => Carbon::now()->addHours(2),
@@ -119,6 +121,7 @@ class TestSeeder extends Seeder
                 'price_vip' => 5000,
                 'movie_id' => 2,
                 'hall_id' => 1,
+                'seat_config' => Hall::where('id', 1)->value('seat_config_example'),
             ],
             [
                 'show_time' => Carbon::now()->addHours(3),
@@ -128,6 +131,7 @@ class TestSeeder extends Seeder
                 'price_vip' => 5000,
                 'movie_id' => 3,
                 'hall_id' => 2,
+                'seat_config' => Hall::where('id', 2)->value('seat_config_example'),
             ],
             [
                 'show_time' => Carbon::now()->addHours(3),
@@ -137,6 +141,7 @@ class TestSeeder extends Seeder
                 'price_vip' => 8000,
                 'movie_id' => 1,
                 'hall_id' => 3,
+                'seat_config' => Hall::where('id', 3)->value('seat_config_example'),
             ],
         ];
         Seance::insert($seances);
