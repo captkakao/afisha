@@ -1,5 +1,6 @@
 <?php
 
+use BeyondCode\LaravelWebSockets\Facades\WebSocketsRouter;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return response()->json([
+        'message' => 'Welcome to Afisha API server'
+    ]);
 });
+
+WebSocketsRouter::webSocket('/my-websocket', \App\Http\Websockets\SeatSocketHandler::class);
