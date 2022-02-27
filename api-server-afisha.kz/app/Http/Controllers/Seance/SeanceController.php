@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Seance\CreateSeanceRequest;
 use App\Http\Requests\Seance\UpdateSeanceRequest;
 use App\Http\Requests\Seance\UpdateSeatRequest;
+use App\Models\Hall;
 use App\Models\Seance;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -13,6 +14,8 @@ class SeanceController extends Controller
 {
     public function create(CreateSeanceRequest $request)
     {
+        $hall = Hall::where('id', $request->hall_id)->first();
+
         $seance = Seance::create([
             'show_time' => $request->show_time,
             'price_adult' => $request->price_adult,
@@ -20,8 +23,10 @@ class SeanceController extends Controller
             'price_student' => $request->price_student,
             'price_vip' => $request->price_vip,
             'movie_id' => $request->movie_id,
-            'hall_id' => $request->hall_id,
+            'hall_id' => $hall->id,
+            'seat_config' => $hall->seat_config_example,
         ]);
+        // TODO if halls seat_config_example changed, then it will be changed for its children too
 
         return response()->json([
             'id' => $seance->id,
@@ -44,7 +49,10 @@ class SeanceController extends Controller
 
     public function updateSeat(UpdateSeatRequest $request, Seance $seance)
     {
-        // TODO seat_config
+        $seance->seat_config = json_encode($request->seat_config);
+        $seance->save();
+
+        return response(null);
     }
 
     public function delete(Seance $seance)
