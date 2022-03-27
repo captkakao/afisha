@@ -4,6 +4,7 @@ namespace App\Services\Auth;
 
 use App\Models\User;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class AuthTokenService
 {
@@ -21,6 +22,12 @@ class AuthTokenService
     public static function resetAllSession(Authenticatable|User $user): void
     {
         $user->tokens()->delete();
+    }
+
+    public static function checkForAuth(string $token)
+    {
+        $accessToken = PersonalAccessToken::findToken($token);
+        return $accessToken?->tokenable;
     }
 
 }

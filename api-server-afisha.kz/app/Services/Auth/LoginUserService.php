@@ -10,6 +10,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class LoginUserService
 {
+    /**
+     * @throws ApiResponseException
+     */
     public function handleLogin(string $email, string $password)
     {
         if (!Auth::attempt(['email' => $email, 'password' => $password]))

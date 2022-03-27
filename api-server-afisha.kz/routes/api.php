@@ -7,6 +7,7 @@ use App\Http\Controllers\Cinema\CinemaController;
 use App\Http\Controllers\Event\EventController;
 use App\Http\Controllers\Hall\HallController;
 use App\Http\Controllers\Seance\SeanceController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,11 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('test', [TestController::class, 'test']);
+});
 
 Route::group(['prefix' => 'auth'], function () {
     Route::post('login', [AuthController::class, 'login']);
