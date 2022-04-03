@@ -13,7 +13,7 @@ class Hall extends Model
 
     protected $fillable = [
         'name',
-        'seat_config_example',
+        'hall_config_example',
         'cinema_id'
     ];
 

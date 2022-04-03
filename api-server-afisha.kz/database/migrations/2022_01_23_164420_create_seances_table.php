@@ -22,7 +22,7 @@ class CreateSeancesTable extends Migration
             $table->double('price_vip')->nullable();
             $table->foreignId('movie_id')->constrained('movies')->onDelete('cascade');
             $table->foreignId('hall_id')->constrained('halls')->onDelete('cascade');
-            $table->json('seat_config');
+            $table->json('hall_config');
             $table->timestamps();
         });
     }

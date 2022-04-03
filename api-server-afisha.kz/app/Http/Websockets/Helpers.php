@@ -2,24 +2,23 @@
 
 namespace App\Http\Websockets;
 
-use Ratchet\ConnectionInterface;
-
 class Helpers
 {
-    public function sendError(UserConnection $userConnection, string $errorType, string $errorMessage)
+    public function sendErrorMessage(UserConnection $userConnection, string $message, string $errorType)
     {
-
         $userConnection->getConnection()->send(json_encode([
             'status' => 'error',
+            'message' => $message,
             'error_type' => $errorType,
-            'error_message' => $errorMessage,
         ], JSON_UNESCAPED_UNICODE));
     }
 
-    public function sendMessage(UserConnection $userConnection, string $message)
+    public function sendSuccessMessage(UserConnection $userConnection, string $message = 'ok', array $payload = null)
     {
         $userConnection->getConnection()->send(json_encode([
+            'status' => 'success',
             'message' => $message,
+            'payload' => $payload,
         ], JSON_UNESCAPED_UNICODE));
     }
 }

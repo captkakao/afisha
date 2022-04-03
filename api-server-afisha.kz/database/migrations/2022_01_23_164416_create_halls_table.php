@@ -16,7 +16,7 @@ class CreateHallsTable extends Migration
         Schema::create('halls', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->json('seat_config_example');
+            $table->json('hall_config_example');
             $table->foreignId('cinema_id')->constrained('cinemas')->onDelete('cascade');
             $table->timestamps();
         });

@@ -2,7 +2,9 @@
 
 namespace App\Http\Websockets;
 
+use App\Models\Seance;
 use App\Services\Auth\AuthTokenService;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Log;
 use Ratchet\ConnectionInterface;
 use Ratchet\WebSocket\MessageComponentInterface;
@@ -37,20 +39,36 @@ class SeatSocketHandler implements MessageComponentInterface
             $request = json_decode($msg);
 
             if (isset($request->command)) {
-                if ($request->command != 'auth' && !$userConnection->getUser()) {
-                    $this->helpers->sendError($userConnection, 'need_auth', 'Authorize before using websocket commands 😘');
-                    return false;
-                }
+//                if ($request->command != 'auth' && !$userConnection->getUser()) {
+//                    $this->helpers->sendError($userConnection, 'need_auth', 'Authorize before using websocket commands 😘');
+//                    return false;
+//                }
 
                 switch ($request->command) {
                     // TODO check for token expiration in WS
                     case 'auth':
                         $user = AuthTokenService::checkForAuth($request->payload->auth_token);
                         $userConnection->setUser($user);
-                        $this->helpers->sendMessage($userConnection, 'ok');
+                        $this->helpers->sendSuccessMessage($userConnection);
+                        break;
+                    case 'join_seance':
+                        $seanceId = $request->payload->seance_id;
+                        if (array_key_exists($seanceId, $this->seances)) {
+                            $this->seances[$seanceId]['visitors'][] = $userConnection;
+                        } else {
+                            $seance = Seance::findOrFail($seanceId);
+                            if ($seance) {
+                                $this->seances[$seanceId]['hall_config'] = $seance->hall_config;
+                                $this->seances[$seanceId]['visitors'][] = $userConnection;
+                            }
+                        }
+                        $this->helpers->sendSuccessMessage($userConnection);
+                        break;
+                    case 'book_seat':
+
                         break;
                     case 'test':
-                        $this->helpers->sendMessage($userConnection, 'test command works perfectly 😘');
+                        $this->helpers->sendSuccessMessage($userConnection, 'test command works perfectly 😘');
                         break;
                     default:
                         $example = [
@@ -69,13 +87,14 @@ class SeatSocketHandler implements MessageComponentInterface
                         $conn->send(json_encode($example));
                 }
             }
+        } catch (ModelNotFoundException $exception) {
+            $this->helpers->sendErrorMessage($userConnection, $exception->getMessage(), 'no_such_seance');
         } catch (\Throwable $exception) {
             Log::error($exception->getMessage(), [
                 'file' => $exception->getFile(),
                 'line' => $exception->getLine(),
-                'code' => $exception->getCode(),
             ]);
-            $this->helpers->sendError($userConnection, 'pizdec', 'Something went wrong');
+            $this->helpers->sendErrorMessage($userConnection, 'Something went wrong', 'pizdec');
         }
 
     }
