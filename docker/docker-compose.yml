@@ -16,6 +16,20 @@ services:
     networks:
       - app-network
 
+  # #Websocket
+  # afisha-api-websockets:
+  #   container_name: ${COMPOSE_APP_NAME}-websockets
+  #   restart: always
+  #   build:
+  #     context: ./services/php_8.1
+  #     dockerfile: Dockerfile
+  #   command: [ 'php', '/var/www/api-server-afisha.kz/artisan', 'websockets:serve' ]
+  #   depends_on:
+  #       - afisha-api-php-fpm
+  #   volumes:
+  #       - ${AFISHA_API_PATH}/:/var/www/api-server-afisha.kz
+  #       - ./services/php_8.1/config/php.ini:/usr/local/etc/php/conf.d/php.ini
+
   #Nginx Service
   afisha-api-nginx:
     build:
@@ -39,7 +53,6 @@ services:
       dockerfile: Dockerfile
     container_name: ${COMPOSE_APP_NAME}-mysql
     restart: always
-    tty: true
     ports:
       - ${AFISHA_API_MYSQL_PORT_MAP}
     environment:
@@ -50,6 +63,7 @@ services:
       - ./services/mysql/config/my.cnf:/etc/mysql/my.cnf
     networks:
       - app-network
+
 
 #Docker Networks
 networks:
