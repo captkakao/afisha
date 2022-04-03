@@ -2,8 +2,10 @@
 
 namespace App\Http\Websockets;
 
+use App\Exceptions\WsResponseException;
 use App\Models\Seance;
 use App\Services\Auth\AuthTokenService;
+use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Log;
 use Ratchet\ConnectionInterface;
@@ -12,6 +14,7 @@ use Ratchet\WebSocket\MessageComponentInterface;
 class SeatSocketHandler implements MessageComponentInterface
 {
     private array $userConnections;
+
     private array $seances;
     private Helpers $helpers;
 
@@ -54,17 +57,55 @@ class SeatSocketHandler implements MessageComponentInterface
                     case 'join_seance':
                         $seanceId = $request->payload->seance_id;
                         if (array_key_exists($seanceId, $this->seances)) {
-                            $this->seances[$seanceId]['visitors'][] = $userConnection;
+                            $this->seances[$seanceId]['visitors'][$conn->resourceId] = $userConnection;
                         } else {
                             $seance = Seance::findOrFail($seanceId);
-                            if ($seance) {
-                                $this->seances[$seanceId]['hall_config'] = $seance->hall_config;
-                                $this->seances[$seanceId]['visitors'][] = $userConnection;
-                            }
+                            $this->seances[$seanceId]['hall_config'] = json_decode($seance->hall_config, true);
+                            $this->seances[$seanceId]['visitors'][$conn->resourceId] = $userConnection;
                         }
-                        $this->helpers->sendSuccessMessage($userConnection);
+                        $payload = [
+                            'hall_config' => $this->seances[$seanceId]['hall_config'],
+                        ];
+                        $this->helpers->sendSuccessMessage($userConnection, payload: $payload);
                         break;
                     case 'book_seat':
+                        $seanceId = $request->payload->seance_id;
+                        if (array_key_exists($seanceId, $this->seances)) {
+                            $seanceVisitors = $this->seances[$seanceId]['visitors'];
+                        } else {
+                            throw new WsResponseException('No such seance with id: ' . $seanceId, 'no_such_seance');
+                        }
+
+                        $isVisitorFound = false;
+                        foreach ($seanceVisitors as $resourceId => $visitor) {
+                            if ($resourceId == $conn->resourceId) {
+                                $isVisitorFound = true;
+                                break;
+                            }
+                        }
+
+
+                        if (!$isVisitorFound) {
+                            throw new WsResponseException('You did not joined to the seance with id: ' . $seanceId, 'not_joined_to_seance');
+                        } else {
+                            $editedHallConfig = $request->payload->edited_hall_config;
+
+                            $seance = Seance::findOrFail($seanceId);
+                            $seance->hall_config = json_encode($editedHallConfig, true);
+                            $seance->save();
+
+                            $this->seances[$seanceId]['hall_config'] = $seance->hall_config;
+                            $this->helpers->sendSuccessMessage($userConnection);
+
+                            $payload = [
+                                'hall_config' => $this->seances[$seanceId]['hall_config'],
+                            ];
+                            foreach ($seanceVisitors as $resourceId => $visitor) {
+                                if ($resourceId != $conn->resourceId) {
+                                    $this->helpers->sendSuccessMessage($visitor, 'hall_updated', $payload);
+                                }
+                            }
+                        }
 
                         break;
                     case 'test':
@@ -87,8 +128,8 @@ class SeatSocketHandler implements MessageComponentInterface
                         $conn->send(json_encode($example));
                 }
             }
-        } catch (ModelNotFoundException $exception) {
-            $this->helpers->sendErrorMessage($userConnection, $exception->getMessage(), 'no_such_seance');
+        } catch (WsResponseException $exception) {
+            $this->helpers->sendErrorMessage($userConnection, $exception->getMessage(), $exception->getErrorType());
         } catch (\Throwable $exception) {
             Log::error($exception->getMessage(), [
                 'file' => $exception->getFile(),
