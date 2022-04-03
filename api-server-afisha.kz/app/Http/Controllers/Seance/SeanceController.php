@@ -8,11 +8,12 @@ use App\Http\Requests\Seance\UpdateSeanceRequest;
 use App\Http\Requests\Seance\UpdateSeatRequest;
 use App\Models\Hall;
 use App\Models\Seance;
+use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 class SeanceController extends Controller
 {
-    public function create(CreateSeanceRequest $request)
+    public function create(CreateSeanceRequest $request): JsonResponse
     {
         $hall = Hall::where('id', $request->hall_id)->first();
 
@@ -60,5 +61,12 @@ class SeanceController extends Controller
         $seance->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
+    }
+
+    public function getHallConfig(Seance $seance): JsonResponse
+    {
+        return response()->json([
+            'hall_config' => json_decode($seance->hall_config, true),
+        ]);
     }
 }
