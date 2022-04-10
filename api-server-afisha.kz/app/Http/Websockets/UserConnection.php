@@ -39,16 +39,26 @@ class UserConnection
         $this->user = $user;
     }
 
-    public function getUnpaidSeatNumbers(): array
+    public function removeUnpaidSeatNumbers(int $rowNumber, int $colNumber): void
     {
-        return $this->unpaidSeatNumbers;
+        foreach ($this->unpaidSeatNumbers as $idx => $unpaidSeatNumber) {
+            if ($unpaidSeatNumber['row_number'] === $rowNumber && $unpaidSeatNumber['col_number'] === $colNumber) {
+                unset($this->unpaidSeatNumbers[$idx]);
+                break;
+            }
+        }
     }
 
-    public function setUnpaidSeatNumbers(int $rowNumber, int $colNumber): void
+    public function addUnpaidSeatNumbers(int $rowNumber, int $colNumber): void
     {
         $this->unpaidSeatNumbers[] = [
             'row_number' => $rowNumber,
             'col_number' => $colNumber,
         ];
+    }
+
+    public function getUnpaidSeatNumbers(): array
+    {
+        return $this->unpaidSeatNumbers;
     }
 }

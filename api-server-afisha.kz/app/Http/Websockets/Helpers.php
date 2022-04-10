@@ -29,7 +29,7 @@ class Helpers
     {
         foreach ($seanceVisitors as $resourceId => $visitor) {
             if ($resourceId != $connection->resourceId) {
-                $this->helpers->sendSuccessMessage($visitor, 'hall_updated', $payload);
+                $this->sendSuccessMessage($visitor, 'hall_updated', $payload);
             }
         }
     }
@@ -60,5 +60,29 @@ class Helpers
         if (!$isVisitorFound) {
             throw new WsResponseException('You did not joined to the seance with id: ' . $seanceId, 'not_joined_to_seance');
         }
+    }
+
+    /**
+     * @throws WsResponseException
+     */
+    public function getIndexesOfSeat(int $rowNumber, int $colNumber, array $rowsAndColumns): array
+    {
+        $rowIndex = $colIndex = null;
+        foreach ($rowsAndColumns as $rowIdx => $row) {
+            if ($row['row_number'] === $rowNumber) {
+                foreach ($row['seats'] as $colIdx => $seat) {
+                    if ($seat['col_number'] === $colNumber) {
+                        $rowIndex = $rowIdx;
+                        $colIndex = $colIdx;
+                        break 2;
+                    }
+                }
+            }
+        }
+
+        if ($rowIndex === null || $colIndex === null) {
+            throw new WsResponseException('Not found seat with row: ' . $rowNumber . ' and col: ' . $colNumber, 'seat_not_found');
+        }
+        return [$rowIndex, $colIndex];
     }
 }

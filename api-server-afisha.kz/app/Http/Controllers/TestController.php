@@ -10,6 +10,7 @@ class TestController extends Controller
 {
     public function test()
     {
+
         $seance = Seance::find(2);
         return json_decode($seance->hall_config, true);
     }
