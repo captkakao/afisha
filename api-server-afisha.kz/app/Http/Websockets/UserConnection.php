@@ -9,11 +9,14 @@ class UserConnection
 {
     private ConnectionInterface $connection;
     private ?User $user;
+    private array $unpaidSeatIds;
+
 
     public function __construct(ConnectionInterface $connection, User $user = null)
     {
         $this->connection = $connection;
         $this->user = $user;
+        $this->unpaidSeatIds = [];
     }
 
     public function getConnection(): ConnectionInterface

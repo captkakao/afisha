@@ -84,17 +84,29 @@ class SeatSocketHandler implements MessageComponentInterface
                             }
                         }
 
-
                         if (!$isVisitorFound) {
                             throw new WsResponseException('You did not joined to the seance with id: ' . $seanceId, 'not_joined_to_seance');
                         } else {
-                            $editedHallConfig = $request->payload->edited_hall_config;
+                            $rowNumber = $request->payload->row_number;
+                            $colNumber = $request->payload->col_number;
+
+                            $rowsAndColumns = $this->seances[$seanceId]['hall_config']['seating_area']['rows'];
+
+                            foreach ($rowsAndColumns as $rowIdx => $row) {
+                                if ($row['row_number'] === $rowNumber) {
+                                    foreach ($row['seats'] as $colIdx => $seat) {
+                                        if ($seat['col_number'] === $colNumber) {
+                                            $this->seances[$seanceId]['hall_config']['seating_area']['rows'][$rowIdx]['seats'][$colIdx]['is_taken'] = true;
+                                            break 2;
+                                        }
+                                    }
+                                }
+                            }
 
                             $seance = Seance::findOrFail($seanceId);
-                            $seance->hall_config = json_encode($editedHallConfig, true);
+                            $seance->hall_config = json_encode($this->seances[$seanceId]['hall_config'], true);
                             $seance->save();
 
-                            $this->seances[$seanceId]['hall_config'] = $seance->hall_config;
                             $this->helpers->sendSuccessMessage($userConnection);
 
                             $payload = [

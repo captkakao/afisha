@@ -164,7 +164,7 @@ class TestSeeder extends Seeder
                                     [
                                         'x' => '5px',
                                         'y' => '5px',
-                                        'col_number' => 4,
+                                        'col_number' => 2,
                                         'is_taken' => true,
                                         'm_top' => null,
                                         'm_right' => '10px',
