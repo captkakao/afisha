@@ -70,54 +70,42 @@ class SeatSocketHandler implements MessageComponentInterface
                         break;
                     case 'book_seat':
                         $seanceId = $request->payload->seance_id;
-                        if (array_key_exists($seanceId, $this->seances)) {
-                            $seanceVisitors = $this->seances[$seanceId]['visitors'];
-                        } else {
-                            throw new WsResponseException('No such seance with id: ' . $seanceId, 'no_such_seance');
-                        }
 
-                        $isVisitorFound = false;
-                        foreach ($seanceVisitors as $resourceId => $visitor) {
-                            if ($resourceId == $conn->resourceId) {
-                                $isVisitorFound = true;
-                                break;
-                            }
-                        }
+                        $this->helpers->checkForSeanceExistence($seanceId, $this->seances);
+                        $this->helpers->checkForVisitorExistence($conn, $seanceId, $this->seances[$seanceId]['visitors']);
 
-                        if (!$isVisitorFound) {
-                            throw new WsResponseException('You did not joined to the seance with id: ' . $seanceId, 'not_joined_to_seance');
-                        } else {
-                            $rowNumber = $request->payload->row_number;
-                            $colNumber = $request->payload->col_number;
 
-                            $rowsAndColumns = $this->seances[$seanceId]['hall_config']['seating_area']['rows'];
+                        $rowNumber = $request->payload->row_number;
+                        $colNumber = $request->payload->col_number;
 
-                            foreach ($rowsAndColumns as $rowIdx => $row) {
-                                if ($row['row_number'] === $rowNumber) {
-                                    foreach ($row['seats'] as $colIdx => $seat) {
-                                        if ($seat['col_number'] === $colNumber) {
-                                            $this->seances[$seanceId]['hall_config']['seating_area']['rows'][$rowIdx]['seats'][$colIdx]['is_taken'] = true;
-                                            break 2;
-                                        }
+                        $rowsAndColumns = $this->seances[$seanceId]['hall_config']['seating_area']['rows'];
+
+                        foreach ($rowsAndColumns as $rowIdx => $row) {
+                            if ($row['row_number'] === $rowNumber) {
+                                foreach ($row['seats'] as $colIdx => $seat) {
+                                    if ($seat['col_number'] === $colNumber) {
+                                        $this->seances[$seanceId]['hall_config']['seating_area']['rows'][$rowIdx]['seats'][$colIdx]['is_taken'] = true;
+                                        break 2;
                                     }
                                 }
                             }
-
-                            $seance = Seance::findOrFail($seanceId);
-                            $seance->hall_config = json_encode($this->seances[$seanceId]['hall_config'], true);
-                            $seance->save();
-
-                            $this->helpers->sendSuccessMessage($userConnection);
-
-                            $payload = [
-                                'hall_config' => $this->seances[$seanceId]['hall_config'],
-                            ];
-                            foreach ($seanceVisitors as $resourceId => $visitor) {
-                                if ($resourceId != $conn->resourceId) {
-                                    $this->helpers->sendSuccessMessage($visitor, 'hall_updated', $payload);
-                                }
-                            }
                         }
+
+                        $seance = Seance::findOrFail($seanceId);
+                        $seance->hall_config = json_encode($this->seances[$seanceId]['hall_config'], true);
+                        $seance->save();
+
+                        $userConnection->setUnpaidSeatNumbers($rowNumber, $colNumber);
+
+                        $this->helpers->sendSuccessMessage($userConnection, 'okee', $userConnection->getUnpaidSeatNumbers());
+
+                        $payload = [
+                            'hall_config' => $this->seances[$seanceId]['hall_config'],
+                        ];
+                        $this->helpers->sendSuccessMessageToOthers($conn, $this->seances[$seanceId]['visitors'], $payload);
+
+                        break;
+                    case 'unbook_seat':
 
                         break;
                     case 'test':
