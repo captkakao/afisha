@@ -40,10 +40,10 @@ class SeatSocketHandler implements MessageComponentInterface
             $request = json_decode($msg);
 
             if (isset($request->command)) {
-                if ($request->command != 'auth' && !$userConnection->getUser()) {
-                    $this->helpers->sendErrorMessage($userConnection, 'Authorize before using websocket commands 😘', 'need_auth');
-                    return false;
-                }
+//                if ($request->command != 'auth' && !$userConnection->getUser()) {
+//                    $this->helpers->sendErrorMessage($userConnection, 'Authorize before using websocket commands 😘', 'need_auth');
+//                    return false;
+//                }
 
                 switch ($request->command) {
                     // TODO check for token expiration in WS
@@ -130,15 +130,37 @@ class SeatSocketHandler implements MessageComponentInterface
                         break;
                     default:
                         $example = [
-                            'methods' => [
-                                'join_room' => [
-                                    'command' => 'join_room',
-                                    'room_id' => 'DSEYrbLMDtGnttb6SQiQzATxuzaKSKRp8f',
+                            'commands' => [
+                                'test' => [
+                                    'command' => 'test',
                                 ],
-                                'send_message' => [
-                                    'command' => 'send_message',
-                                    'room_id' => 'DSEYrbLMDtGnttb6SQiQzATxuzaKSKRp8f',
-                                    'message' => 'qweqwe',
+                                'auth' => [
+                                    'command' => 'auth',
+                                    'payload' => [
+                                        'auth_token' => 'DJNtrXOvyEdeFjG516iGxpEiClxFBWpPrw5lScev',
+                                    ],
+                                ],
+                                'join_seance' => [
+                                    'command' => 'join_seance',
+                                    'payload' => [
+                                        'seance_id' => 2,
+                                    ],
+                                ],
+                                'book_seat' => [
+                                    'command' => 'book_seat',
+                                    'payload' => [
+                                        'seance_id' => 2,
+                                        'row_number' => 2,
+                                        'col_number' => 1,
+                                    ],
+                                ],
+                                'unbook_seat' => [
+                                    'command' => 'unbook_seat',
+                                    'payload' => [
+                                        'seance_id' => 2,
+                                        'row_number' => 2,
+                                        'col_number' => 1,
+                                    ],
                                 ],
                             ],
                         ];
