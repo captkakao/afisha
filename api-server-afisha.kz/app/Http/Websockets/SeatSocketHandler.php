@@ -40,10 +40,10 @@ class SeatSocketHandler implements MessageComponentInterface
             $request = json_decode($msg);
 
             if (isset($request->command)) {
-//                if ($request->command != 'auth' && !$userConnection->getUser()) {
-//                    $this->helpers->sendErrorMessage($userConnection, 'Authorize before using websocket commands 😘', 'need_auth');
-//                    return false;
-//                }
+                if ($request->command != 'auth' && !$userConnection->getUser()) {
+                    $this->helpers->sendErrorMessage($userConnection, 'Authorize before using websocket commands 😘', 'need_auth');
+                    return false;
+                }
 
                 switch ($request->command) {
                     // TODO check for token expiration in WS
