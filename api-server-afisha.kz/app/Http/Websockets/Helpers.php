@@ -47,6 +47,16 @@ class Helpers
     /**
      * @throws WsResponseException
      */
+    public function checkIfSeatIsTaken(array $seances, int $seanceId, int $rowIdx, int $colIdx)
+    {
+        $isTaken = $seances[$seanceId]['hall_config']['seating_area']['rows'][$rowIdx]['seats'][$colIdx]['is_taken'];
+        if ($isTaken)
+            throw new WsResponseException('Seat with row idx: ' . $rowIdx . ' and col idx: ' . $colIdx . ' is already taken!', 'seat_is_already_taken');
+    }
+
+    /**
+     * @throws WsResponseException
+     */
     public function checkForVisitorExistence(ConnectionInterface $connection, int $seanceId, array $seanceVisitors)
     {
         $isVisitorFound = false;

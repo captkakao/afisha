@@ -5,8 +5,6 @@ namespace App\Http\Websockets;
 use App\Exceptions\WsResponseException;
 use App\Models\Seance;
 use App\Services\Auth\AuthTokenService;
-use Exception;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Log;
 use Ratchet\ConnectionInterface;
 use Ratchet\WebSocket\MessageComponentInterface;
@@ -42,10 +40,10 @@ class SeatSocketHandler implements MessageComponentInterface
             $request = json_decode($msg);
 
             if (isset($request->command)) {
-//                if ($request->command != 'auth' && !$userConnection->getUser()) {
-//                    $this->helpers->sendError($userConnection, 'need_auth', 'Authorize before using websocket commands 😘');
-//                    return false;
-//                }
+                if ($request->command != 'auth' && !$userConnection->getUser()) {
+                    $this->helpers->sendErrorMessage($userConnection, 'Authorize before using websocket commands 😘', 'need_auth');
+                    return false;
+                }
 
                 switch ($request->command) {
                     // TODO check for token expiration in WS
@@ -56,6 +54,8 @@ class SeatSocketHandler implements MessageComponentInterface
                         break;
                     case 'join_seance':
                         $seanceId = $request->payload->seance_id;
+                        $userConnection->setSeanceId($seanceId);
+
                         if (array_key_exists($seanceId, $this->seances)) {
                             $this->seances[$seanceId]['visitors'][$conn->resourceId] = $userConnection;
                         } else {
@@ -74,13 +74,13 @@ class SeatSocketHandler implements MessageComponentInterface
                         $this->helpers->checkForSeanceExistence($seanceId, $this->seances);
                         $this->helpers->checkForVisitorExistence($conn, $seanceId, $this->seances[$seanceId]['visitors']);
 
-
                         $rowNumber = $request->payload->row_number;
                         $colNumber = $request->payload->col_number;
                         $rowsAndColumns = $this->seances[$seanceId]['hall_config']['seating_area']['rows'];
 
                         list($rowIdx, $colIdx) = $this->helpers->getIndexesOfSeat($rowNumber, $colNumber, $rowsAndColumns);
 
+                        $this->helpers->checkIfSeatIsTaken($this->seances, $seanceId, $rowIdx, $colIdx);
                         $this->seances[$seanceId]['hall_config']['seating_area']['rows'][$rowIdx]['seats'][$colIdx]['is_taken'] = true;
 
                         $seance = Seance::findOrFail($seanceId);
@@ -89,7 +89,7 @@ class SeatSocketHandler implements MessageComponentInterface
 
                         $userConnection->addUnpaidSeatNumbers($rowNumber, $colNumber);
 
-                        $this->helpers->sendSuccessMessage($userConnection, 'okee', $userConnection->getUnpaidSeatNumbers());
+                        $this->helpers->sendSuccessMessage($userConnection, payload: $userConnection->getUnpaidSeatNumbers());
 
                         $payload = [
                             'hall_config' => $this->seances[$seanceId]['hall_config'],
@@ -117,7 +117,7 @@ class SeatSocketHandler implements MessageComponentInterface
 
                         $userConnection->removeUnpaidSeatNumbers($rowNumber, $colNumber);
 
-                        $this->helpers->sendSuccessMessage($userConnection, 'okee2', $userConnection->getUnpaidSeatNumbers());
+                        $this->helpers->sendSuccessMessage($userConnection, payload: $userConnection->getUnpaidSeatNumbers());
 
                         $payload = [
                             'hall_config' => $this->seances[$seanceId]['hall_config'],
@@ -159,14 +159,40 @@ class SeatSocketHandler implements MessageComponentInterface
 
     public function onClose(ConnectionInterface $conn)
     {
-        // The connection is closed, remove from connection list
-        $this->clients->detach($conn);
+        $userConnection = $this->userConnections[$conn->resourceId];
+
+        $unpaidSeatNumbers = $userConnection->getUnpaidSeatNumbers();
+        $seanceId = $userConnection->getSeanceId();
+        $rowsAndColumns = $this->seances[$seanceId]['hall_config']['seating_area']['rows'];
+
+        foreach ($unpaidSeatNumbers as $unpaidSeatNumber) {
+            list($rowIdx, $colIdx) = $this->helpers->getIndexesOfSeat($unpaidSeatNumber['row_number'], $unpaidSeatNumber['col_number'], $rowsAndColumns);
+
+            $this->seances[$seanceId]['hall_config']['seating_area']['rows'][$rowIdx]['seats'][$colIdx]['is_taken'] = false;
+        }
+
+        $seance = Seance::findOrFail($seanceId);
+        $seance->hall_config = json_encode($this->seances[$seanceId]['hall_config'], true);
+        $seance->save();
+
+        unset($this->seances[$seanceId]['visitors'][$conn->resourceId]);
+        unset($this->userConnections[$conn->resourceId]);
+
+        $payload = [
+            'hall_config' => $this->seances[$seanceId]['hall_config'],
+        ];
+        $this->helpers->sendSuccessMessageToOthers($conn, $this->seances[$seanceId]['visitors'], $payload);
+
         echo "Connection {$conn->resourceId} has disconnected\n";
     }
 
-    public function onError(ConnectionInterface $conn, \Exception $e)
+    public function onError(ConnectionInterface $conn, \Exception $exception)
     {
-        echo "An error has occurred: {$e->getMessage()}\n";
+        Log::error($exception->getMessage(), [
+            'file' => $exception->getFile(),
+            'line' => $exception->getLine(),
+        ]);
+        echo "An error has occurred: {$exception->getMessage()}\n";
         $conn->close();
     }
 }

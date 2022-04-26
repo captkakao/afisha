@@ -10,6 +10,7 @@ class UserConnection
     private ConnectionInterface $connection;
     private ?User $user;
     private array $unpaidSeatNumbers;
+    private int $seanceId;
 
 
     public function __construct(ConnectionInterface $connection, User $user = null)
@@ -60,5 +61,15 @@ class UserConnection
     public function getUnpaidSeatNumbers(): array
     {
         return $this->unpaidSeatNumbers;
+    }
+
+    public function getSeanceId(): int
+    {
+        return $this->seanceId;
+    }
+
+    public function setSeanceId(int $seanceId): void
+    {
+        $this->seanceId = $seanceId;
     }
 }
