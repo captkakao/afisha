@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Available\CityController;
 use App\Http\Controllers\Available\DateTimeController;
 use App\Http\Controllers\Cinema\CinemaController;
+use App\Http\Controllers\Verification\EmailVerificationController;
 use App\Http\Controllers\Event\EventController;
 use App\Http\Controllers\Hall\HallController;
 use App\Http\Controllers\Seance\SeanceController;
@@ -32,6 +33,13 @@ Route::group(['prefix' => 'auth'], function () {
         Route::post('', [AuthController::class, 'logout']);
         Route::post('another', [AuthController::class, 'logoutAnother']);
     });
+});
+
+// EMAIL CONFIRMATION
+Route::prefix('/email-confirmation')->group(function () {
+//    Route::post('/send', [EmailVerificationController::class, 'send'])->middleware('throttle:1,' . ((int)config('services.email_resend_timeout_sec') / 60));
+    Route::post('/send', [EmailVerificationController::class, 'send']);
+    Route::post('/confirm', [EmailVerificationController::class, 'confirm']);
 });
 
 Route::middleware(['auth:sanctum'])->group(function () {

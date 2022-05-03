@@ -61,4 +61,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Cinema::class);
     }
+
+    public function emailVerification()
+    {
+        return $this->hasOne(UserEmailVerification::class);
+    }
 }

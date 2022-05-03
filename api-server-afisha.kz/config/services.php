@@ -30,4 +30,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'sms_resend_timeout_sec' => 60,
+    'email_resend_timeout_sec' => 60,
+    'email_expiration_time_sec' => 60/*seconds*/ * 60/*minutes*/ * 24/*hours*/,
+    'phone_expiration_time_sec' => 60/*seconds*/ * 60/*minutes*/ * 24/*hours*/,
+    'password_reset_expiration_time_sec' => 60/*seconds*/ * 60/*minutes*/ * 1/*hours*/,
 ];
