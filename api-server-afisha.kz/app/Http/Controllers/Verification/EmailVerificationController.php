@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Verification\VerifyEmailRequest;
 use App\Models\User;
 use App\Services\Verification\EmailVerificationService;
-use Illuminate\Http\Request;
 
 class EmailVerificationController extends Controller
 {
@@ -17,9 +16,9 @@ class EmailVerificationController extends Controller
     public function send(VerifyEmailRequest $request)
     {
         $user = User::where('email', $request->email)->first();
-        if ($user->hasVerifiedEmail()) {
-            throw new ApiResponseException(__('auth.email_already_confirmed'), 'email_confirmed');
-        }
+//        if ($user->hasVerifiedEmail()) {
+//            throw new ApiResponseException(__('auth.email_already_confirmed'), 'email_confirmed');
+//        }
 
         (new EmailVerificationService($user))->sendVerificationLink();
 

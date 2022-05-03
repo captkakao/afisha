@@ -2,11 +2,11 @@
 
 namespace App\Services\Verification;
 
+use App\Jobs\SendVerificationLinkJob;
 use App\Mail\EmailVerificationMail;
 use App\Models\User;
 use App\Models\UserEmailVerification;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class EmailVerificationService
@@ -31,20 +31,23 @@ class EmailVerificationService
                 'last_sent_at' => Carbon::now(),
             ]);
             $this->user->emailVerification()->save($emailVerification);
-        }
-        else {
+        } else {
             $emailVerification->code = $confirmationCode;
             $emailVerification->last_sent_at = Carbon::now();
             $emailVerification->save();
         }
-        // TODO
+
+        $verificationLink = config('services.afisha_frontend_url') . '/some-url/confirm-email?email=' . $this->user->email . '&confirmation_code=' . $confirmationCode;
 
         $details = [
-            'title' => 'test mail eww',
-            'body' => 'This is teSst',
+            'view' => 'verification.email.verification-link',
+            'title' => 'Welcome to Afisha',
+            'body' => [
+                'verification_link' => $verificationLink,
+            ],
         ];
 
-        Mail::to('soultouchka@gmail.com')->send(new EmailVerificationMail($details));
+        SendVerificationLinkJob::dispatch('soultouchka@gmail.com', new EmailVerificationMail($details));
     }
 
     private function generateConfirmationCode(): string

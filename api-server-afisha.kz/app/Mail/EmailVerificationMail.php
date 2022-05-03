@@ -11,7 +11,7 @@ class EmailVerificationMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private array $details;
+    public array $details;
 
     /**
      * Create a new message instance.
@@ -30,6 +30,6 @@ class EmailVerificationMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Eww Email')->view('welcome');
+        return $this->subject($this->details['title'])->view($this->details['view'], ['body' => $this->details['body']]);
     }
 }

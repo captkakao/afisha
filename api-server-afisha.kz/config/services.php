@@ -30,6 +30,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'afisha_frontend_url' => env('AFISHA_FRONTEND_URL'),
+
     'sms_resend_timeout_sec' => 60,
     'email_resend_timeout_sec' => 60,
     'email_expiration_time_sec' => 60/*seconds*/ * 60/*minutes*/ * 24/*hours*/,
