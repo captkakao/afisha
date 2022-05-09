@@ -59,27 +59,31 @@ class EmailVerificationService
     /**
      * Checks for correctness of confirmation code
      */
-//    public function validateEmailConfirmationCode(string $confirmationCode): bool
-//    {
-//        $emailVerification = EmailVerificationRepository::getLastEmailVerification($this->user);
-//
-//        if ($emailVerification && $emailVerification->code === $confirmationCode)
-//            return true;
-//        return false;
-//    }
-//
-//    /**
-//     * Checks for code time expiration
-//     */
-//    public function validateEmailConfirmationTime(): bool
-//    {
-//        $emailVerification = EmailVerificationRepository::getLastEmailVerification($this->user);
-//        $lastSentAt = strtotime($emailVerification->last_sent_at);
-//        $now = strtotime(Carbon::now());
-//        $totalSecondsDiff = abs($now - $lastSentAt);
-//        if ($totalSecondsDiff < config('services.email_expiration_time_sec')) {
-//            return true;
-//        }
-//        return false;
-//    }
+    public function validateEmailConfirmationCode(string $confirmationCode): bool
+    {
+        $emailVerification = $this->user->emailVerification()
+            ->latest('last_sent_at')
+            ->first();
+
+        if ($emailVerification && $emailVerification->code === $confirmationCode)
+            return true;
+        return false;
+    }
+
+    /**
+     * Checks for code time expiration
+     */
+    public function validateEmailConfirmationTime(): bool
+    {
+        $emailVerification = $this->user->emailVerification()
+            ->latest('last_sent_at')
+            ->first();
+        $lastSentAt = strtotime($emailVerification->last_sent_at);
+        $now = strtotime(Carbon::now());
+        $totalSecondsDiff = abs($now - $lastSentAt);
+        if ($totalSecondsDiff < config('services.email_expiration_time_sec')) {
+            return true;
+        }
+        return false;
+    }
 }
