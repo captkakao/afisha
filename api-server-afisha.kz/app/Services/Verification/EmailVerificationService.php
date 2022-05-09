@@ -47,7 +47,7 @@ class EmailVerificationService
             ],
         ];
 
-        SendVerificationLinkJob::dispatch('soultouchka@gmail.com', new EmailVerificationMail($details));
+        SendVerificationLinkJob::dispatch($this->user->email, new EmailVerificationMail($details));
     }
 
     private function generateConfirmationCode(): string
