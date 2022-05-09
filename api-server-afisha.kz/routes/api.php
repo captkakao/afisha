@@ -37,8 +37,8 @@ Route::group(['prefix' => 'auth'], function () {
 
 // EMAIL CONFIRMATION
 Route::prefix('/email-confirmation')->group(function () {
-//    Route::post('/send', [EmailVerificationController::class, 'send'])->middleware('throttle:1,' . ((int)config('services.email_resend_timeout_sec') / 60));
-    Route::post('/send', [EmailVerificationController::class, 'send']);
+    Route::post('/send', [EmailVerificationController::class, 'send'])->middleware('throttle:1,' . ((int)config('services.email_resend_timeout_sec') / 60));
+//    Route::post('/send', [EmailVerificationController::class, 'send']);
     Route::post('/confirm', [EmailVerificationController::class, 'confirm']);
 });
 
