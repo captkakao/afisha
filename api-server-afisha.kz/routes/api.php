@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('test', [TestController::class, 'test']);
 
+// LOGIN & REGISTRATION
 Route::group(['prefix' => 'auth'], function () {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [AuthController::class, 'register']);
@@ -43,6 +44,7 @@ Route::prefix('/email-confirmation')->group(function () {
 });
 
 Route::middleware(['auth:sanctum'])->group(function () {
+    // SEANCES
     Route::group(['prefix' => 'seance',], function () {
         Route::post('', [SeanceController::class, 'create']); //TODO policy
         Route::put('{seance}', [SeanceController::class, 'update'])->middleware('can:update,seance');
@@ -51,6 +53,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::delete('{seance}', [SeanceController::class, 'delete'])->middleware('can:delete,seance');
     });
 
+    // USER DATA
     Route::group(['prefix' => 'me',], function () {
         Route::get('', [UserController::class, 'me']);
         Route::put('', [UserController::class, 'updateProfile']);
@@ -65,6 +68,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 Route::get('cities', [CityController::class, 'index']);
 Route::get('today_tomorrow', [DateTimeController::class, 'getDateTime']);
 
+// CINEMA
 Route::group(['prefix' => 'cinema',], function () {
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('', [CinemaController::class, 'getUserCinemas']);
@@ -72,12 +76,15 @@ Route::group(['prefix' => 'cinema',], function () {
         Route::put('{cinema}', [CinemaController::class, 'update'])->middleware('can:update,cinema');
         Route::delete('{cinema}', [CinemaController::class, 'delete'])->middleware('can:delete,cinema');
 
+        // CINEMA HALLS
         Route::get('{cinema}/hall', [HallController::class, 'getHalls']);
         Route::post('{cinema}/hall', [HallController::class, 'createHall'])->middleware('can:createHall,cinema');
         Route::prefix('hall')->group(function () {
             Route::put('{hall}', [HallController::class, 'updateHall'])->middleware('can:update,hall');
             Route::delete('{hall}', [HallController::class, 'deleteHall'])->middleware('can:delete,hall');
         });
+
+        // CINEMA EVENTS
         Route::prefix('event')->group(function () {
             Route::get('', [EventController::class, 'getAllEvents']);
             Route::post('images', [EventController::class, 'uploadImages']);
@@ -87,6 +94,8 @@ Route::group(['prefix' => 'cinema',], function () {
             Route::post('{cinema}/event', [EventController::class, 'create'])->middleware('can:createEvent,cinema');
         });
     });
+
+    // CINEMA SEANCES
     Route::get('{cinema}', [CinemaController::class, 'getCinema']);
     Route::get('{cinema}/seances', [CinemaController::class, 'getSeances']);
     Route::get('city/{city}', [CinemaController::class, 'getCityCinemas']);

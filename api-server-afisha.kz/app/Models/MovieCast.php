@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Movie extends Model
+class MovieCast extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'original_name',
-        'is_active',
+        'movie_id',
+        'cast_id',
     ];
 }
