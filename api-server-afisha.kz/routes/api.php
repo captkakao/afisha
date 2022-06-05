@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Available\CityController;
 use App\Http\Controllers\Available\DateTimeController;
 use App\Http\Controllers\Cinema\CinemaController;
+use App\Http\Controllers\MovieController;
 use App\Http\Controllers\Verification\EmailVerificationController;
 use App\Http\Controllers\Event\EventController;
 use App\Http\Controllers\Hall\HallController;
@@ -99,4 +100,8 @@ Route::group(['prefix' => 'cinema',], function () {
     Route::get('{cinema}', [CinemaController::class, 'getCinema']);
     Route::get('{cinema}/seances', [CinemaController::class, 'getSeances']);
     Route::get('city/{city}', [CinemaController::class, 'getCityCinemas']);
+});
+
+Route::group(['prefix' => 'movie',], function () {
+    Route::get('now-showing', [MovieController::class, 'getNowShowingMovies']);
 });
