@@ -104,6 +104,14 @@ class MovieUserSeeder extends Seeder
                 'born_country_id' => 146,
                 'height' => '181',
             ],
+            [
+                'id' => 12,
+                'full_name' => 'Кристиан Бэйл',
+                'full_original_name' => 'Christian Bale',
+                'born_date' => '1974-01-30',
+                'born_country_id' => 146,
+                'height' => '183',
+            ],
         ];
         MovieUser::insert($users);
     }

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\MovieDetail;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class MovieDetailSeeder extends Seeder
 {
@@ -83,5 +84,36 @@ class MovieDetailSeeder extends Seeder
             ],
         ];
         MovieDetail::insert($movieDetails);
+
+        DB::table('movie_cast')->insert([
+            [
+                'movie_id' => 1,
+                'cast_id' => 1,
+            ],
+            [
+                'movie_id' => 1,
+                'cast_id' => 3,
+            ],
+            [
+                'movie_id' => 2,
+                'cast_id' => 5,
+            ],
+            [
+                'movie_id' => 3,
+                'cast_id' => 1,
+            ],
+            [
+                'movie_id' => 4,
+                'cast_id' => 12,
+            ],
+            [
+                'movie_id' => 5,
+                'cast_id' => 8,
+            ],
+            [
+                'movie_id' => 6,
+                'cast_id' => 10,
+            ],
+        ]);
     }
 }
