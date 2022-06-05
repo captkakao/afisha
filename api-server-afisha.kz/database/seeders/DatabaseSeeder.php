@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             LanguageSeeder::class,
             CountrySeeder::class,
             CitySeeder::class,
+            GenreSeeder::class,
             UserSeeder::class,
             CinemaSeeder::class,
             MovieUserSeeder::class,

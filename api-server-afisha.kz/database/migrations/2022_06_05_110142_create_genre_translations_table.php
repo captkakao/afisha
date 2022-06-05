@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAwardsTable extends Migration
+class CreateGenreTranslationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateAwardsTable extends Migration
      */
     public function up()
     {
-        Schema::create('awards', function (Blueprint $table) {
+        Schema::create('genre_translations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('slug')->unique();
+            $table->string('translated_name');
+            $table->foreignId('language_id')->constrained('languages')->onDelete('cascade');
+            $table->foreignId('genre_id')->constrained('genres')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateAwardsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('awards');
+        Schema::dropIfExists('genre_translations');
     }
 }

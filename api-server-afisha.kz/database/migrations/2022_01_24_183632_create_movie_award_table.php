@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAwardsTable extends Migration
+class CreateMovieAwardTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateAwardsTable extends Migration
      */
     public function up()
     {
-        Schema::create('awards', function (Blueprint $table) {
+        Schema::create('movie_award', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('slug')->unique();
+            $table->foreignId('award_id')->constrained('awards')->onDelete('cascade');
+            $table->foreignId('movie_id')->constrained('movies')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateAwardsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('awards');
+        Schema::dropIfExists('movie_award');
     }
 }

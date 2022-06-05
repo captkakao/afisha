@@ -10,8 +10,59 @@ class TestController extends Controller
 {
     public function test()
     {
+        $genres = [
+            "Action",
+            "Adventure",
+            "Animated",
+            "Biography",
+            "Comedy",
+            "Crime",
+            "Dance",
+            "Disaster",
+            "Documentary",
+            "Drama",
+            "Erotic",
+            "Family",
+            "Fantasy",
+            "Found Footage",
+            "Historical",
+            "Horror",
+            "Independent",
+            "Legal",
+            "Live Action",
+            "Martial Arts",
+            "Musical",
+            "Mystery",
+            "Noir",
+            "Performance",
+            "Political",
+            "Romance",
+            "Satire",
+            "Science Fiction",
+            "Short",
+            "Silent",
+            "Slasher",
+            "Sports",
+            "Spy",
+            "Superhero",
+            "Supernatural",
+            "Suspense",
+            "Teen",
+            "Thriller",
+            "War",
+            "Western"
+        ];
 
-        $seance = Seance::find(2);
-        return json_decode($seance->hall_config, true);
+        $editedGenres = [];
+
+        foreach ($genres as $key => $val) {
+            $editedGenres[] = [
+                'translated_name' => $val,
+                'language_id' => 1,
+                'genre_id' => $key + 1,
+            ];
+        }
+
+        return response()->json($editedGenres);
     }
 }

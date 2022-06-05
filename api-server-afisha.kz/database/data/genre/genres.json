@@ -1,0 +1,162 @@
+[
+    {
+        "id": 1,
+        "slug": "action"
+    },
+    {
+        "id": 2,
+        "slug": "adventure"
+    },
+    {
+        "id": 3,
+        "slug": "animated"
+    },
+    {
+        "id": 4,
+        "slug": "biography"
+    },
+    {
+        "id": 5,
+        "slug": "comedy"
+    },
+    {
+        "id": 6,
+        "slug": "crime"
+    },
+    {
+        "id": 7,
+        "slug": "dance"
+    },
+    {
+        "id": 8,
+        "slug": "disaster"
+    },
+    {
+        "id": 9,
+        "slug": "documentary"
+    },
+    {
+        "id": 10,
+        "slug": "drama"
+    },
+    {
+        "id": 11,
+        "slug": "erotic"
+    },
+    {
+        "id": 12,
+        "slug": "family"
+    },
+    {
+        "id": 13,
+        "slug": "fantasy"
+    },
+    {
+        "id": 14,
+        "slug": "found_footage"
+    },
+    {
+        "id": 15,
+        "slug": "historical"
+    },
+    {
+        "id": 16,
+        "slug": "horror"
+    },
+    {
+        "id": 17,
+        "slug": "independent"
+    },
+    {
+        "id": 18,
+        "slug": "legal"
+    },
+    {
+        "id": 19,
+        "slug": "live_action"
+    },
+    {
+        "id": 20,
+        "slug": "martial_arts"
+    },
+    {
+        "id": 21,
+        "slug": "musical"
+    },
+    {
+        "id": 22,
+        "slug": "mystery"
+    },
+    {
+        "id": 23,
+        "slug": "noir"
+    },
+    {
+        "id": 24,
+        "slug": "performance"
+    },
+    {
+        "id": 25,
+        "slug": "political"
+    },
+    {
+        "id": 26,
+        "slug": "romance"
+    },
+    {
+        "id": 27,
+        "slug": "satire"
+    },
+    {
+        "id": 28,
+        "slug": "science_fiction"
+    },
+    {
+        "id": 29,
+        "slug": "short"
+    },
+    {
+        "id": 30,
+        "slug": "silent"
+    },
+    {
+        "id": 31,
+        "slug": "slasher"
+    },
+    {
+        "id": 32,
+        "slug": "sports"
+    },
+    {
+        "id": 33,
+        "slug": "spy"
+    },
+    {
+        "id": 34,
+        "slug": "superhero"
+    },
+    {
+        "id": 35,
+        "slug": "supernatural"
+    },
+    {
+        "id": 36,
+        "slug": "suspense"
+    },
+    {
+        "id": 37,
+        "slug": "teen"
+    },
+    {
+        "id": 38,
+        "slug": "thriller"
+    },
+    {
+        "id": 39,
+        "slug": "war"
+    },
+    {
+        "id": 40,
+        "slug": "western"
+    }
+]

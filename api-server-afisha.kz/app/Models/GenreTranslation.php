@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Award extends Model
+class GenreTranslation extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'slug',
+        'translated_name',
+        'language_id',
+        'genre_id',
     ];
 }

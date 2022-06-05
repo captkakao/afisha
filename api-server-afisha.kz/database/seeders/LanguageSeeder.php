@@ -16,14 +16,17 @@ class LanguageSeeder extends Seeder
     {
         $languages = [
             [
+                'id' => 1,
                 'name' => 'English',
                 'code' => 'en',
             ],
             [
+                'id' => 2,
                 'name' => 'Русский',
                 'code' => 'ru',
             ],
             [
+                'id' => 3,
                 'name' => 'Қазақша',
                 'code' => 'kz',
             ],

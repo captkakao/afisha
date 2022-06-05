@@ -1,0 +1,202 @@
+[
+    {
+        "translated_name": "Әрекет",
+        "language_id": 3,
+        "genre_id": 1
+    },
+    {
+        "translated_name": "Шытырман оқиға",
+        "language_id": 3,
+        "genre_id": 2
+    },
+    {
+        "translated_name": "Анимациялық",
+        "language_id": 3,
+        "genre_id": 3
+    },
+    {
+        "translated_name": "Өмірбаян",
+        "language_id": 3,
+        "genre_id": 4
+    },
+    {
+        "translated_name": "Комедия",
+        "language_id": 3,
+        "genre_id": 5
+    },
+    {
+        "translated_name": "Қылмыс",
+        "language_id": 3,
+        "genre_id": 6
+    },
+    {
+        "translated_name": "Би",
+        "language_id": 3,
+        "genre_id": 7
+    },
+    {
+        "translated_name": "Апат",
+        "language_id": 3,
+        "genre_id": 8
+    },
+    {
+        "translated_name": "Деректі фильм",
+        "language_id": 3,
+        "genre_id": 9
+    },
+    {
+        "translated_name": "Драма",
+        "language_id": 3,
+        "genre_id": 10
+    },
+    {
+        "translated_name": "Эротикалық",
+        "language_id": 3,
+        "genre_id": 11
+    },
+    {
+        "translated_name": "Отбасы",
+        "language_id": 3,
+        "genre_id": 12
+    },
+    {
+        "translated_name": "Фантазия",
+        "language_id": 3,
+        "genre_id": 13
+    },
+    {
+        "translated_name": "Табылған кадрлар",
+        "language_id": 3,
+        "genre_id": 14
+    },
+    {
+        "translated_name": "Тарихи",
+        "language_id": 3,
+        "genre_id": 15
+    },
+    {
+        "translated_name": "Ужас",
+        "language_id": 3,
+        "genre_id": 16
+    },
+    {
+        "translated_name": "Тәуелсіз",
+        "language_id": 3,
+        "genre_id": 17
+    },
+    {
+        "translated_name": "Заңды",
+        "language_id": 3,
+        "genre_id": 18
+    },
+    {
+        "translated_name": "Тікелей әрекет",
+        "language_id": 3,
+        "genre_id": 19
+    },
+    {
+        "translated_name": "Жекпе-жек өнері",
+        "language_id": 3,
+        "genre_id": 20
+    },
+    {
+        "translated_name": "Мюзикл",
+        "language_id": 3,
+        "genre_id": 21
+    },
+    {
+        "translated_name": "Жұмбақ",
+        "language_id": 3,
+        "genre_id": 22
+    },
+    {
+        "translated_name": "Нур",
+        "language_id": 3,
+        "genre_id": 23
+    },
+    {
+        "translated_name": "Спектакль",
+        "language_id": 3,
+        "genre_id": 24
+    },
+    {
+        "translated_name": "Саяси",
+        "language_id": 3,
+        "genre_id": 25
+    },
+    {
+        "translated_name": "Романтика",
+        "language_id": 3,
+        "genre_id": 26
+    },
+    {
+        "translated_name": "Сатира",
+        "language_id": 3,
+        "genre_id": 27
+    },
+    {
+        "translated_name": "Ғылыми фантастика",
+        "language_id": 3,
+        "genre_id": 28
+    },
+    {
+        "translated_name": "Қысқа",
+        "language_id": 3,
+        "genre_id": 29
+    },
+    {
+        "translated_name": "Үнсіз",
+        "language_id": 3,
+        "genre_id": 30
+    },
+    {
+        "translated_name": "Слейзер",
+        "language_id": 3,
+        "genre_id": 31
+    },
+    {
+        "translated_name": "Спорт",
+        "language_id": 3,
+        "genre_id": 32
+    },
+    {
+        "translated_name": "Шпион",
+        "language_id": 3,
+        "genre_id": 33
+    },
+    {
+        "translated_name": "Суперқаһарман",
+        "language_id": 3,
+        "genre_id": 34
+    },
+    {
+        "translated_name": "Табиғаттан тыс",
+        "language_id": 3,
+        "genre_id": 35
+    },
+    {
+        "translated_name": "Тоқтату",
+        "language_id": 3,
+        "genre_id": 36
+    },
+    {
+        "translated_name": "Жасөспірім",
+        "language_id": 3,
+        "genre_id": 37
+    },
+    {
+        "translated_name": "Триллер",
+        "language_id": 3,
+        "genre_id": 38
+    },
+    {
+        "translated_name": "Соғыс",
+        "language_id": 3,
+        "genre_id": 39
+    },
+    {
+        "translated_name": "Батыс",
+        "language_id": 3,
+        "genre_id": 40
+    }
+]

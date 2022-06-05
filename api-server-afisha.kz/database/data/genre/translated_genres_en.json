@@ -1,0 +1,202 @@
+[
+    {
+        "translated_name": "Action",
+        "language_id": 1,
+        "genre_id": 1
+    },
+    {
+        "translated_name": "Adventure",
+        "language_id": 1,
+        "genre_id": 2
+    },
+    {
+        "translated_name": "Animated",
+        "language_id": 1,
+        "genre_id": 3
+    },
+    {
+        "translated_name": "Biography",
+        "language_id": 1,
+        "genre_id": 4
+    },
+    {
+        "translated_name": "Comedy",
+        "language_id": 1,
+        "genre_id": 5
+    },
+    {
+        "translated_name": "Crime",
+        "language_id": 1,
+        "genre_id": 6
+    },
+    {
+        "translated_name": "Dance",
+        "language_id": 1,
+        "genre_id": 7
+    },
+    {
+        "translated_name": "Disaster",
+        "language_id": 1,
+        "genre_id": 8
+    },
+    {
+        "translated_name": "Documentary",
+        "language_id": 1,
+        "genre_id": 9
+    },
+    {
+        "translated_name": "Drama",
+        "language_id": 1,
+        "genre_id": 10
+    },
+    {
+        "translated_name": "Erotic",
+        "language_id": 1,
+        "genre_id": 11
+    },
+    {
+        "translated_name": "Family",
+        "language_id": 1,
+        "genre_id": 12
+    },
+    {
+        "translated_name": "Fantasy",
+        "language_id": 1,
+        "genre_id": 13
+    },
+    {
+        "translated_name": "Found Footage",
+        "language_id": 1,
+        "genre_id": 14
+    },
+    {
+        "translated_name": "Historical",
+        "language_id": 1,
+        "genre_id": 15
+    },
+    {
+        "translated_name": "Horror",
+        "language_id": 1,
+        "genre_id": 16
+    },
+    {
+        "translated_name": "Independent",
+        "language_id": 1,
+        "genre_id": 17
+    },
+    {
+        "translated_name": "Legal",
+        "language_id": 1,
+        "genre_id": 18
+    },
+    {
+        "translated_name": "Live Action",
+        "language_id": 1,
+        "genre_id": 19
+    },
+    {
+        "translated_name": "Martial Arts",
+        "language_id": 1,
+        "genre_id": 20
+    },
+    {
+        "translated_name": "Musical",
+        "language_id": 1,
+        "genre_id": 21
+    },
+    {
+        "translated_name": "Mystery",
+        "language_id": 1,
+        "genre_id": 22
+    },
+    {
+        "translated_name": "Noir",
+        "language_id": 1,
+        "genre_id": 23
+    },
+    {
+        "translated_name": "Performance",
+        "language_id": 1,
+        "genre_id": 24
+    },
+    {
+        "translated_name": "Political",
+        "language_id": 1,
+        "genre_id": 25
+    },
+    {
+        "translated_name": "Romance",
+        "language_id": 1,
+        "genre_id": 26
+    },
+    {
+        "translated_name": "Satire",
+        "language_id": 1,
+        "genre_id": 27
+    },
+    {
+        "translated_name": "Science Fiction",
+        "language_id": 1,
+        "genre_id": 28
+    },
+    {
+        "translated_name": "Short",
+        "language_id": 1,
+        "genre_id": 29
+    },
+    {
+        "translated_name": "Silent",
+        "language_id": 1,
+        "genre_id": 30
+    },
+    {
+        "translated_name": "Slasher",
+        "language_id": 1,
+        "genre_id": 31
+    },
+    {
+        "translated_name": "Sports",
+        "language_id": 1,
+        "genre_id": 32
+    },
+    {
+        "translated_name": "Spy",
+        "language_id": 1,
+        "genre_id": 33
+    },
+    {
+        "translated_name": "Superhero",
+        "language_id": 1,
+        "genre_id": 34
+    },
+    {
+        "translated_name": "Supernatural",
+        "language_id": 1,
+        "genre_id": 35
+    },
+    {
+        "translated_name": "Suspense",
+        "language_id": 1,
+        "genre_id": 36
+    },
+    {
+        "translated_name": "Teen",
+        "language_id": 1,
+        "genre_id": 37
+    },
+    {
+        "translated_name": "Thriller",
+        "language_id": 1,
+        "genre_id": 38
+    },
+    {
+        "translated_name": "War",
+        "language_id": 1,
+        "genre_id": 39
+    },
+    {
+        "translated_name": "Western",
+        "language_id": 1,
+        "genre_id": 40
+    }
+]

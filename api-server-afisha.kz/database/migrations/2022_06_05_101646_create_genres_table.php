@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMovieAwardsTable extends Migration
+class CreateGenresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateMovieAwardsTable extends Migration
      */
     public function up()
     {
-        Schema::create('movie_awards', function (Blueprint $table) {
+        Schema::create('genres', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('award_id')->constrained('movie_awards')->onDelete('cascade');
-            $table->foreignId('movie_id')->constrained('movies')->onDelete('cascade');
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateMovieAwardsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('movie_awards');
+        Schema::dropIfExists('genres');
     }
 }
