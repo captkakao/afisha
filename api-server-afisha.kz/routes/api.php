@@ -103,6 +103,8 @@ Route::group(['prefix' => 'cinema',], function () {
 });
 
 Route::group(['prefix' => 'movie',], function () {
+    Route::get('{movie}', [MovieController::class, 'getMovie']);
+
     Route::group(['prefix' => 'showing',], function () {
         Route::get('now', [MovieController::class, 'getShowingNowMovies']);
         Route::get('soon', [MovieController::class, 'getShowingSoonMovies']);

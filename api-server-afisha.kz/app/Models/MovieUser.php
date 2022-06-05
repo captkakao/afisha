@@ -16,4 +16,10 @@ class MovieUser extends Model
         'born_country_id',
         'height',
     ];
+
+    protected $hidden = [
+        'pivot',
+        'created_at',
+        'updated_at',
+    ];
 }
