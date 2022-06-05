@@ -170,5 +170,9 @@
     {
         "id": 44,
         "slug": "military"
+    },
+    {
+        "id": 45,
+        "slug": "cartoon"
     }
 ]

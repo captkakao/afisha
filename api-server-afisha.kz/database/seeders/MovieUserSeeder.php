@@ -112,6 +112,30 @@ class MovieUserSeeder extends Seeder
                 'born_country_id' => 146,
                 'height' => '183',
             ],
+            [
+                'id' => 13,
+                'full_name' => 'Дмитрий Высоцкий',
+                'full_original_name' => 'Дмитрий Высоцкий',
+                'born_date' => '1971-01-01',
+                'born_country_id' => 120,
+                'height' => '173',
+            ],
+            [
+                'id' => 14,
+                'full_name' => 'Алекс де ла Иглесиа',
+                'full_original_name' => 'Álex de la Iglesia',
+                'born_date' => '1965-12-04',
+                'born_country_id' => 130,
+                'height' => '173',
+            ],
+            [
+                'id' => 15,
+                'full_name' => 'Доми Ши',
+                'full_original_name' => 'Domee Shi',
+                'born_date' => '1989-12-04',
+                'born_country_id' => 31,
+                'height' => '159',
+            ],
         ];
         MovieUser::insert($users);
     }

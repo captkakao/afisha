@@ -213,5 +213,10 @@
         "translated_name": "Military",
         "language_id": 1,
         "genre_id": 44
+    },
+    {
+        "translated_name": "Cartoon",
+        "language_id": 1,
+        "genre_id": 45
     }
 ]

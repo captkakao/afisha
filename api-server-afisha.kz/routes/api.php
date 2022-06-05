@@ -103,5 +103,9 @@ Route::group(['prefix' => 'cinema',], function () {
 });
 
 Route::group(['prefix' => 'movie',], function () {
-    Route::get('now-showing', [MovieController::class, 'getNowShowingMovies']);
+    Route::group(['prefix' => 'showing',], function () {
+        Route::get('now', [MovieController::class, 'getShowingNowMovies']);
+        Route::get('soon', [MovieController::class, 'getShowingSoonMovies']);
+        Route::get('kids', [MovieController::class, 'getShowingKidMovies']);
+    });
 });

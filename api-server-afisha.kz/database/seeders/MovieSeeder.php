@@ -51,6 +51,24 @@ class MovieSeeder extends Seeder
                 'original_name' => 'Брат',
                 'is_active' => true,
             ],
+            [
+                'id' => 7,
+                'name' => 'Три кота и море приключений',
+                'original_name' => 'Три кота и море приключений',
+                'is_active' => true,
+            ],
+            [
+                'id' => 8,
+                'name' => 'Венецияфрения',
+                'original_name' => 'Veneciafrenia',
+                'is_active' => true,
+            ],
+            [
+                'id' => 9,
+                'name' => 'Я краснею',
+                'original_name' => 'Turning Red',
+                'is_active' => true,
+            ],
         ];
         Movie::insert($movies);
     }

@@ -211,7 +211,12 @@
     },
     {
         "translated_name": "Әскери",
-        "language_id": 1,
+        "language_id": 3,
         "genre_id": 44
+    },
+    {
+        "translated_name": "Мультфильм",
+        "language_id": 3,
+        "genre_id": 45
     }
 ]
