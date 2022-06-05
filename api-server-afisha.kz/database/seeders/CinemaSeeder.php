@@ -39,6 +39,22 @@ class CinemaSeeder extends Seeder
                 'city_id' => 3, // Almaty
                 'user_id' => 1, // Fiko Joy
             ],
+            [
+                'name' => 'Adam Joy`s cinema #1',
+                'description' => 'Some description',
+                'address' => 'Some fake address #1',
+                'phone' => '77473456789',
+                'city_id' => 3, // Almaty
+                'user_id' => 2, // Adam Joy
+            ],
+            [
+                'name' => 'Adam Joy`s cinema #1',
+                'description' => 'Some description',
+                'address' => 'Some fake address #2',
+                'phone' => '77071234567',
+                'city_id' => 3, // Almaty
+                'user_id' => 2, // Adam Joy
+            ],
         ];
         Cinema::insert($cinemaData);
     }

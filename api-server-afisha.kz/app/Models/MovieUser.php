@@ -11,5 +11,9 @@ class MovieUser extends Model
 
     protected $fillable = [
         'full_name',
+        'full_original_name',
+        'born_date',
+        'born_country_id',
+        'height',
     ];
 }

@@ -16,7 +16,10 @@ class CreateMovieUsersTable extends Migration
         Schema::create('movie_users', function (Blueprint $table) {
             $table->id();
             $table->string('full_name');
-            // TODO add more details
+            $table->string('full_original_name');
+            $table->date('born_date');
+            $table->foreignId('born_country_id')->constrained('countries')->onDelete('cascade');
+            $table->integer('height');
             $table->timestamps();
         });
     }

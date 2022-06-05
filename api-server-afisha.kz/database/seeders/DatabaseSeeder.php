@@ -19,7 +19,11 @@ class DatabaseSeeder extends Seeder
             CitySeeder::class,
             UserSeeder::class,
             CinemaSeeder::class,
-            TestSeeder::class,
+            MovieUserSeeder::class,
+            MovieSeeder::class,
+            MovieDetailSeeder::class,
+            HallSeeder::class,
+            SeanceSeeder::class,
         ]);
 
     }
