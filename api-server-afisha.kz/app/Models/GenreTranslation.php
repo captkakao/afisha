@@ -9,6 +9,12 @@ class GenreTranslation extends Model
 {
     use HasFactory;
 
+    protected $hidden = [
+//        'genre_id',
+        'created_at',
+        'updated_at'
+    ];
+
     protected $fillable = [
         'translated_name',
         'language_id',

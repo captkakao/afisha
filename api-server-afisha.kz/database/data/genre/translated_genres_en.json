@@ -25,11 +25,6 @@
         "genre_id": 5
     },
     {
-        "translated_name": "Crime",
-        "language_id": 1,
-        "genre_id": 6
-    },
-    {
         "translated_name": "Dance",
         "language_id": 1,
         "genre_id": 7
@@ -198,5 +193,25 @@
         "translated_name": "Western",
         "language_id": 1,
         "genre_id": 40
+    },
+    {
+        "translated_name": "Detective",
+        "language_id": 1,
+        "genre_id": 41
+    },
+    {
+        "translated_name": "Crime",
+        "language_id": 1,
+        "genre_id": 42
+    },
+    {
+        "translated_name": "Fantastic",
+        "language_id": 1,
+        "genre_id": 43
+    },
+    {
+        "translated_name": "Military",
+        "language_id": 1,
+        "genre_id": 44
     }
 ]

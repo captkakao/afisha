@@ -1,6 +1,6 @@
 [
     {
-        "translated_name": "Действие",
+        "translated_name": "Боевик",
         "language_id": 2,
         "genre_id": 1
     },
@@ -10,7 +10,7 @@
         "genre_id": 2
     },
     {
-        "translated_name": "Анимированный",
+        "translated_name": "Аниме",
         "language_id": 2,
         "genre_id": 3
     },
@@ -23,11 +23,6 @@
         "translated_name": "Комедия",
         "language_id": 2,
         "genre_id": 5
-    },
-    {
-        "translated_name": "Преступление",
-        "language_id": 2,
-        "genre_id": 6
     },
     {
         "translated_name": "Танец",
@@ -198,5 +193,25 @@
         "translated_name": "Вестерн",
         "language_id": 2,
         "genre_id": 40
+    },
+    {
+        "translated_name": "Детектив",
+        "language_id": 2,
+        "genre_id": 41
+    },
+    {
+        "translated_name": "Криминал",
+        "language_id": 2,
+        "genre_id": 42
+    },
+    {
+        "translated_name": "Фантастика",
+        "language_id": 2,
+        "genre_id": 43
+    },
+    {
+        "translated_name": "Военнный",
+        "language_id": 1,
+        "genre_id": 44
     }
 ]

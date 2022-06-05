@@ -20,10 +20,6 @@
         "slug": "comedy"
     },
     {
-        "id": 6,
-        "slug": "crime"
-    },
-    {
         "id": 7,
         "slug": "dance"
     },
@@ -158,5 +154,21 @@
     {
         "id": 40,
         "slug": "western"
+    },
+    {
+        "id": 41,
+        "slug": "detective"
+    },
+    {
+        "id": 42,
+        "slug": "crime"
+    },
+    {
+        "id": 43,
+        "slug": "fantastic"
+    },
+    {
+        "id": 44,
+        "slug": "military"
     }
 ]

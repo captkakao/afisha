@@ -115,5 +115,88 @@ class MovieDetailSeeder extends Seeder
                 'cast_id' => 10,
             ],
         ]);
+
+        DB::table('movie_genre')->insert([
+            [
+                'movie_id' => 1,
+                'genre_id' => 1,
+            ],
+            [
+                'movie_id' => 1,
+                'genre_id' => 2,
+            ],
+            [
+                'movie_id' => 1,
+                'genre_id' => 43,
+            ],
+            [
+                'movie_id' => 2,
+                'genre_id' => 1,
+            ],
+            [
+                'movie_id' => 2,
+                'genre_id' => 10,
+            ],
+            [
+                'movie_id' => 2,
+                'genre_id' => 42,
+            ],
+            [
+                'movie_id' => 2,
+                'genre_id' => 43,
+            ],
+            [
+                'movie_id' => 3,
+                'genre_id' => 10,
+            ],
+            [
+                'movie_id' => 3,
+                'genre_id' => 44,
+            ],
+            [
+                'movie_id' => 3,
+                'genre_id' => 4,
+            ],
+            [
+                'movie_id' => 3,
+                'genre_id' => 15,
+            ],
+            [
+                'movie_id' => 4,
+                'genre_id' => 1,
+            ],
+            [
+                'movie_id' => 4,
+                'genre_id' => 43,
+            ],
+            [
+                'movie_id' => 4,
+                'genre_id' => 2,
+            ],
+            [
+                'movie_id' => 4,
+                'genre_id' => 10,
+            ],
+            [
+                'movie_id' => 5,
+                'genre_id' => 10,
+            ],
+            [
+                'movie_id' => 5,
+                'genre_id' => 42,
+            ],
+            [
+                'movie_id' => 6,
+                'genre_id' => 10,
+            ],
+            [
+                'movie_id' => 6,
+                'genre_id' => 42,
+            ],
+            [
+                'movie_id' => 6,
+                'genre_id' => 1,
+            ],
+        ]);
     }
 }

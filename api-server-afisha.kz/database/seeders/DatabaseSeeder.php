@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             MovieUserSeeder::class,
             MovieSeeder::class,
             MovieDetailSeeder::class,
+            MovieGradeSeeder::class,
             HallSeeder::class,
             SeanceSeeder::class,
         ]);

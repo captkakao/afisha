@@ -25,11 +25,6 @@
         "genre_id": 5
     },
     {
-        "translated_name": "Қылмыс",
-        "language_id": 3,
-        "genre_id": 6
-    },
-    {
         "translated_name": "Би",
         "language_id": 3,
         "genre_id": 7
@@ -198,5 +193,25 @@
         "translated_name": "Батыс",
         "language_id": 3,
         "genre_id": 40
+    },
+    {
+        "translated_name": "Детектив",
+        "language_id": 3,
+        "genre_id": 41
+    },
+    {
+        "translated_name": "қылмыс",
+        "language_id": 3,
+        "genre_id": 42
+    },
+    {
+        "translated_name": "Фантастика",
+        "language_id": 3,
+        "genre_id": 43
+    },
+    {
+        "translated_name": "Әскери",
+        "language_id": 1,
+        "genre_id": 44
     }
 ]
