@@ -36,7 +36,7 @@ class MovieController extends Controller
                 }]);
             }])
             ->with(['images' => function ($query) {
-                $query->where('is_logo', true)->first();
+                $query->where('is_logo', false);
             }])
             ->leftJoin('movie_user_grade', 'movies.id', '=', 'movie_user_grade.movie_id')
             ->leftJoin('movie_details', 'movies.id', '=', 'movie_details.movie_id')
@@ -59,7 +59,7 @@ class MovieController extends Controller
                 }]);
             }])
             ->with(['images' => function ($query) {
-                $query->where('is_logo', false);
+                $query->where('is_logo', true);
             }])
             ->leftJoin('movie_user_grade', 'movies.id', '=', 'movie_user_grade.movie_id')
             ->leftJoin('movie_details', 'movies.id', '=', 'movie_details.movie_id')
@@ -86,7 +86,7 @@ class MovieController extends Controller
                 }]);
             }])
             ->with(['images' => function ($query) {
-                $query->where('is_logo', false);
+                $query->where('is_logo', true);
             }])
             ->leftJoin('movie_user_grade', 'movies.id', '=', 'movie_user_grade.movie_id')
             ->leftJoin('movie_details', 'movies.id', '=', 'movie_details.movie_id')
@@ -114,7 +114,7 @@ class MovieController extends Controller
                 }]);
             }])
             ->with(['images' => function ($query) {
-                $query->where('is_logo', false);
+                $query->where('is_logo', true);
             }])
             ->leftJoin('movie_user_grade', 'movies.id', '=', 'movie_user_grade.movie_id')
             ->leftJoin('movie_details', 'movies.id', '=', 'movie_details.movie_id')

@@ -3,8 +3,8 @@
 namespace App\Http\Resources\Movie;
 
 use App\Http\Resources\Genre\GenreCollection;
-use App\Http\Resources\Image\ImageCollection;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Support\Facades\URL;
 
 class MovieCollection extends ResourceCollection
 {
@@ -19,11 +19,11 @@ class MovieCollection extends ResourceCollection
         return [
             'data' => $this->collection->transform(function ($movie) {
                 return [
-                    'id'            => $movie->id,
-                    'name'          => $movie->name,
-                    'movie_rate'    => round($movie->movie_rate, 1),
-                    'genres'        => new GenreCollection($movie->genres),
-                    'detail_images' => new ImageCollection($movie->images),
+                    'id'         => $movie->id,
+                    'name'       => $movie->name,
+                    'movie_rate' => round($movie->movie_rate, 1),
+                    'genres'     => new GenreCollection($movie->genres),
+                    'logo_image' => URL::to('storage/' . $movie->images[0]->image_path),
                 ];
             }),
         ];

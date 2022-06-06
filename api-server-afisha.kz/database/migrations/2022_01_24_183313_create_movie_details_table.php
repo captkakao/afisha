@@ -23,6 +23,7 @@ class CreateMovieDetailsTable extends Migration
             $table->integer('age_rating');
             $table->integer('duration');
             $table->foreignId('producer_id')->constrained('movie_users')->onDelete('cascade');
+            $table->string('trailer_link');
             $table->timestamps();
         });
     }

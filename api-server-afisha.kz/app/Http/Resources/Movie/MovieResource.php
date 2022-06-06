@@ -24,7 +24,8 @@ class MovieResource extends JsonResource
             'id'            => $this->id,
             'name'          => $this->name,
             'original_name' => $this->original_name,
-            'movie_rate'    => $this->movie_rate,
+            'trailer_link'  => $this->detail->trailer_link,
+            'movie_rate'    => round($this->movie_rate, 1),
             'grade_count'   => $this->grade_count,
             'detail'        => [
                 'description'      => $this->detail->description,
@@ -39,7 +40,7 @@ class MovieResource extends JsonResource
                 ],
                 'casts'            => new CastCollection($this->detail->casts),
                 'genres'           => new GenreCollection($this->genres),
-                'logo_image'       => new ImageResource($this->images[0]),
+                'images'    => new ImageCollection($this->images),
             ],
 
         ];

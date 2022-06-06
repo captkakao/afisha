@@ -27,6 +27,7 @@ class MovieDetailSeeder extends Seeder
                 'age_rating' => 12,
                 'duration' => 131,
                 'producer_id' => 2,
+                'trailer_link' => 'https://youtu.be/fb7CaR89IJ0',
             ],
             [
                 'id' => 2,
@@ -38,6 +39,7 @@ class MovieDetailSeeder extends Seeder
                 'age_rating' => 16,
                 'duration' => 176,
                 'producer_id' => 4,
+                'trailer_link' => 'https://youtu.be/tZeMfF45Gmc',
             ],
             [
                 'id' => 3,
@@ -49,6 +51,7 @@ class MovieDetailSeeder extends Seeder
                 'age_rating' => 18,
                 'duration' => 139,
                 'producer_id' => 6,
+                'trailer_link' => 'https://youtu.be/VxaGyCaCouY',
             ],
             [
                 'id' => 4,
@@ -60,6 +63,7 @@ class MovieDetailSeeder extends Seeder
                 'age_rating' => 16,
                 'duration' => 139,
                 'producer_id' => 11,
+                'trailer_link' => 'https://youtu.be/AejoSV6gXZw',
             ],
             [
                 'id' => 5,
@@ -71,6 +75,7 @@ class MovieDetailSeeder extends Seeder
                 'age_rating' => 16,
                 'duration' => 175,
                 'producer_id' => 7,
+                'trailer_link' => 'https://youtu.be/HTY8zMALZP0',
             ],
             [
                 'id' => 6,
@@ -82,6 +87,7 @@ class MovieDetailSeeder extends Seeder
                 'age_rating' => 18,
                 'duration' => 100,
                 'producer_id' => 9,
+                'trailer_link' => 'https://youtu.be/V0xbH91kvNE',
             ],
             [
                 'id' => 7,
@@ -93,6 +99,7 @@ class MovieDetailSeeder extends Seeder
                 'age_rating' => 0,
                 'duration' => 65,
                 'producer_id' => 13,
+                'trailer_link' => 'https://youtu.be/NNgzdVPs2lo',
             ],
             [
                 'id' => 8,
@@ -104,6 +111,7 @@ class MovieDetailSeeder extends Seeder
                 'age_rating' => 18,
                 'duration' => 100,
                 'producer_id' => 14,
+                'trailer_link' => 'https://youtu.be/8xZhc2R8OIU',
             ],
             [
                 'id' => 9,
@@ -115,6 +123,7 @@ class MovieDetailSeeder extends Seeder
                 'age_rating' => 6,
                 'duration' => 100,
                 'producer_id' => 15,
+                'trailer_link' => 'https://youtu.be/GkLjQWlbHbQ',
             ],
         ];
         MovieDetail::insert($movieDetails);

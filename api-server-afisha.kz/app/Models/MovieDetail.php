@@ -18,6 +18,7 @@ class MovieDetail extends Model
         'age_rating',
         'duration',
         'producer_id',
+        'trailer_link',
     ];
 
     protected $hidden = [
