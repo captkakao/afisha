@@ -21,7 +21,7 @@ class MovieCollection extends ResourceCollection
                 return [
                     'id'         => $movie->id,
                     'name'       => $movie->name,
-                    'movie_rate' => round($movie->movie_rate, 1),
+                    'movie_rate' => $movie->movie_rate ? round($movie->movie_rate, 1) : null,
                     'genres'     => new GenreCollection($movie->genres),
                     'logo_image' => URL::to('storage/' . $movie->images[0]->image_path),
                 ];

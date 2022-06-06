@@ -25,7 +25,7 @@ class MovieResource extends JsonResource
             'name'          => $this->name,
             'original_name' => $this->original_name,
             'trailer_link'  => $this->detail->trailer_link,
-            'movie_rate'    => round($this->movie_rate, 1),
+            'movie_rate'    => $this->movie_rate ? round($this->movie_rate, 1) : null,
             'grade_count'   => $this->grade_count,
             'detail'        => [
                 'description'      => $this->detail->description,
