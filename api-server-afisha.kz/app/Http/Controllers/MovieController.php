@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Movie\MovieCollection;
 use App\Http\Resources\Movie\MovieResource;
 use App\Models\Language;
 use App\Models\Movie;
@@ -14,30 +15,6 @@ class MovieController extends Controller
     public function getMovie(Movie $movie)
     {
         $languageId = Language::where('code', App::currentLocale())->first()->id;
-
-//        return $movie->select(
-//            'movies.id',
-//            'name',
-//            'original_name',
-//            DB::raw('AVG(movie_user_grade.grade) as movie_rate'),
-//            DB::raw('count(movie_user_grade.grade) as grade_count'),
-//        )->with(['detail' => function ($query) use ($languageId) {
-//            $query->with(['country.countryTranslation' => function ($q) use ($languageId) {
-//                $q->where('language_id', $languageId);
-//            }]);
-//            $query->with(['producer', 'casts']);
-//        }])
-//            ->with(['genres' => function ($query) use ($languageId) {
-//                $query->select('genres.id');
-//                $query->with(['genreTranslation' => function ($q) use ($languageId) {
-//                    $q->select('genre_translations.genre_id', 'genre_translations.translated_name');
-//                    $q->where('language_id', $languageId);
-//                }]);
-//            }])
-//            ->leftJoin('movie_user_grade', 'movies.id', '=', 'movie_user_grade.movie_id')
-//            ->leftJoin('movie_details', 'movies.id', '=', 'movie_details.movie_id')
-//            ->groupBy('movies.id')
-//            ->first();
 
         return new MovieResource($movie->select(
             'movies.id',
@@ -85,10 +62,7 @@ class MovieController extends Controller
             ->groupBy('movies.id')
             ->get();
 
-
-        return [
-            'data' => $movies,
-        ];
+        return new MovieCollection($movies);
     }
 
     public function getShowingSoonMovies()
@@ -113,9 +87,7 @@ class MovieController extends Controller
             ->get();
 
 
-        return [
-            'data' => $movies,
-        ];
+        return new MovieCollection($movies);
     }
 
     public function getShowingKidMovies()
@@ -140,9 +112,6 @@ class MovieController extends Controller
             ->groupBy('movies.id')
             ->get();
 
-
-        return [
-            'data' => $movies,
-        ];
+        return new MovieCollection($movies);
     }
 }
