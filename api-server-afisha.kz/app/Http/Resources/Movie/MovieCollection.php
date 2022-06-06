@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Movie;
 
 use App\Http\Resources\Genre\GenreCollection;
+use App\Http\Resources\Image\ImageCollection;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class MovieCollection extends ResourceCollection
@@ -18,10 +19,11 @@ class MovieCollection extends ResourceCollection
         return [
             'data' => $this->collection->transform(function ($movie) {
                 return [
-                    'id'         => $movie->id,
-                    'name'       => $movie->name,
-                    'movie_rate' => $movie->movie_rate,
-                    'genres'     => new GenreCollection($movie->genres),
+                    'id'            => $movie->id,
+                    'name'          => $movie->name,
+                    'movie_rate'    => round($movie->movie_rate, 1),
+                    'genres'        => new GenreCollection($movie->genres),
+                    'detail_images' => new ImageCollection($movie->images),
                 ];
             }),
         ];

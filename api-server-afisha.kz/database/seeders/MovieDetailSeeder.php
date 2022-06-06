@@ -253,45 +253,116 @@ class MovieDetailSeeder extends Seeder
             ],
         ]);
 
-        $images = [
+        $logoImages = [
             [
                 'id' => 1,
                 'image_path' => 'seeder_images/image_21530_1654493037.webp',
+                'is_logo' => true,
             ],
             [
                 'id' => 2,
                 'image_path' => 'seeder_images/image_33716_1654493037.webp',
+                'is_logo' => true,
             ],
             [
                 'id' => 3,
                 'image_path' => 'seeder_images/image_30310_1654493037.webp',
+                'is_logo' => true,
             ],
             [
                 'id' => 4,
                 'image_path' => 'seeder_images/image_22432_1654493037.webp',
+                'is_logo' => true,
             ],
             [
                 'id' => 5,
                 'image_path' => 'seeder_images/image_17046_1654493037.webp',
+                'is_logo' => true,
             ],
             [
                 'id' => 6,
                 'image_path' => 'seeder_images/image_22370_1654493037.webp',
+                'is_logo' => true,
             ],
             [
                 'id' => 7,
                 'image_path' => 'seeder_images/image_17808_1654493037.webp',
+                'is_logo' => true,
             ],
             [
                 'id' => 8,
                 'image_path' => 'seeder_images/image_28266_1654493037.webp',
+                'is_logo' => true,
             ],
             [
                 'id' => 9,
                 'image_path' => 'seeder_images/image_30534_1654493037.webp',
+                'is_logo' => true,
             ],
         ];
 
-        Image::insert($images);
+        Image::insert($logoImages);
+
+        $detailImages = [
+            [
+                'id' => 10,
+                'image_path' => 'seeder_images/image_122296_1654495926.webp',
+                'is_logo' => false,
+            ],
+            [
+                'id' => 11,
+                'image_path' => 'seeder_images/image_38476_1654495926.webp',
+                'is_logo' => false,
+            ],
+        ];
+
+        Image::insert($detailImages);
+
+        DB::table('movie_images')->insert([
+            [
+                'movie_id' => 8,
+                'image_id' => 1,
+            ],
+            [
+                'movie_id' => 9,
+                'image_id' => 2,
+            ],
+            [
+                'movie_id' => 7,
+                'image_id' => 3,
+            ],
+            [
+                'movie_id' => 3,
+                'image_id' => 4,
+            ],
+            [
+                'movie_id' => 5,
+                'image_id' => 5,
+            ],
+            [
+                'movie_id' => 6,
+                'image_id' => 6,
+            ],
+            [
+                'movie_id' => 4,
+                'image_id' => 7,
+            ],
+            [
+                'movie_id' => 2,
+                'image_id' => 8,
+            ],
+            [
+                'movie_id' => 1,
+                'image_id' => 9,
+            ],
+            [
+                'movie_id' => 1,
+                'image_id' => 10,
+            ],
+            [
+                'movie_id' => 1,
+                'image_id' => 11,
+            ],
+        ]);
     }
 }

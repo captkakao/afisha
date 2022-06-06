@@ -35,6 +35,9 @@ class MovieController extends Controller
                     $q->where('language_id', $languageId);
                 }]);
             }])
+            ->with(['images' => function ($query) {
+                $query->where('is_logo', true)->first();
+            }])
             ->leftJoin('movie_user_grade', 'movies.id', '=', 'movie_user_grade.movie_id')
             ->leftJoin('movie_details', 'movies.id', '=', 'movie_details.movie_id')
             ->groupBy('movies.id')
@@ -54,6 +57,9 @@ class MovieController extends Controller
                     $q->select('genre_translations.genre_id', 'genre_translations.translated_name');
                     $q->where('language_id', $languageId);
                 }]);
+            }])
+            ->with(['images' => function ($query) {
+                $query->where('is_logo', false);
             }])
             ->leftJoin('movie_user_grade', 'movies.id', '=', 'movie_user_grade.movie_id')
             ->leftJoin('movie_details', 'movies.id', '=', 'movie_details.movie_id')
@@ -79,6 +85,9 @@ class MovieController extends Controller
                     $q->where('language_id', $languageId);
                 }]);
             }])
+            ->with(['images' => function ($query) {
+                $query->where('is_logo', false);
+            }])
             ->leftJoin('movie_user_grade', 'movies.id', '=', 'movie_user_grade.movie_id')
             ->leftJoin('movie_details', 'movies.id', '=', 'movie_details.movie_id')
             ->where('is_active', true)
@@ -103,6 +112,9 @@ class MovieController extends Controller
                     $q->select('genre_translations.genre_id', 'genre_translations.translated_name');
                     $q->where('language_id', $languageId);
                 }]);
+            }])
+            ->with(['images' => function ($query) {
+                $query->where('is_logo', false);
             }])
             ->leftJoin('movie_user_grade', 'movies.id', '=', 'movie_user_grade.movie_id')
             ->leftJoin('movie_details', 'movies.id', '=', 'movie_details.movie_id')

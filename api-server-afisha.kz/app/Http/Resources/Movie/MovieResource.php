@@ -3,12 +3,15 @@
 namespace App\Http\Resources\Movie;
 
 use App\Http\Resources\Genre\GenreCollection;
+use App\Http\Resources\Image\ImageCollection;
+use App\Http\Resources\Image\ImageResource;
 use App\Http\Resources\MovieUser\CastCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class MovieResource extends JsonResource
 {
     public static $wrap = null;
+
     /**
      * Transform the resource into an array.
      *
@@ -36,6 +39,7 @@ class MovieResource extends JsonResource
                 ],
                 'casts'            => new CastCollection($this->detail->casts),
                 'genres'           => new GenreCollection($this->genres),
+                'logo_image'       => new ImageResource($this->images[0]),
             ],
 
         ];

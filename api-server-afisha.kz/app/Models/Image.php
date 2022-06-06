@@ -9,5 +9,14 @@ class Image extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['image_path'];
+    protected $fillable = [
+        'image_path',
+        'is_logo',
+    ];
+
+    protected $hidden = [
+        'pivot',
+        'created_at',
+        'updated_at',
+    ];
 }
