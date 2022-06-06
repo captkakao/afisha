@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Image\ImageCollection;
 use App\Services\Image\ImageUploaderService;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,8 @@ class MovieController extends Controller
     {
         $imageFiles = $request->file('images');
 
-        return $imageUploaderService->uploadArray($imageFiles);
+        $images =  $imageUploaderService->uploadArray($imageFiles);
+
+        return new ImageCollection($images);
     }
 }

@@ -71,5 +71,7 @@ class MovieSeeder extends Seeder
             ],
         ];
         Movie::insert($movies);
+
+
     }
 }

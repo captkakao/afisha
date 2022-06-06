@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Image\ImageCollection;
 use App\Models\Image;
 use App\Models\MovieDetail;
 use App\Models\Seance;
@@ -12,6 +13,6 @@ class TestController extends Controller
 {
     public function test()
     {
-        return Image::all();
+        return new ImageCollection(Image::all());
     }
 }

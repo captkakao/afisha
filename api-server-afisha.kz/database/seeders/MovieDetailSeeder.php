@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Image;
 use App\Models\MovieDetail;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -251,5 +252,46 @@ class MovieDetailSeeder extends Seeder
                 'genre_id' => 45,
             ],
         ]);
+
+        $images = [
+            [
+                'id' => 1,
+                'image_path' => 'seeder_images/image_21530_1654493037.webp',
+            ],
+            [
+                'id' => 2,
+                'image_path' => 'seeder_images/image_33716_1654493037.webp',
+            ],
+            [
+                'id' => 3,
+                'image_path' => 'seeder_images/image_30310_1654493037.webp',
+            ],
+            [
+                'id' => 4,
+                'image_path' => 'seeder_images/image_22432_1654493037.webp',
+            ],
+            [
+                'id' => 5,
+                'image_path' => 'seeder_images/image_17046_1654493037.webp',
+            ],
+            [
+                'id' => 6,
+                'image_path' => 'seeder_images/image_22370_1654493037.webp',
+            ],
+            [
+                'id' => 7,
+                'image_path' => 'seeder_images/image_17808_1654493037.webp',
+            ],
+            [
+                'id' => 8,
+                'image_path' => 'seeder_images/image_28266_1654493037.webp',
+            ],
+            [
+                'id' => 9,
+                'image_path' => 'seeder_images/image_30534_1654493037.webp',
+            ],
+        ];
+
+        Image::insert($images);
     }
 }
