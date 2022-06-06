@@ -111,3 +111,9 @@ Route::group(['prefix' => 'movie',], function () {
         Route::get('kids', [MovieController::class, 'getShowingKidMovies']);
     });
 });
+
+Route::group(['prefix' => 'admin',], function () {
+    Route::prefix('movie')->group(function () {
+        Route::post('images', [\App\Http\Controllers\Admin\MovieController::class, 'uploadImages']);
+    });
+});
