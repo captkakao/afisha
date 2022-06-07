@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Cinema\GetSeancesRequest;
 use App\Http\Resources\Movie\MovieCollection;
 use App\Http\Resources\Movie\MovieResource;
 use App\Models\Language;
 use App\Models\Movie;
+use App\Models\Seance;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
@@ -125,5 +127,33 @@ class MovieController extends Controller
             ->get();
 
         return new MovieCollection($movies);
+    }
+
+    public function getMovieSeances(GetSeancesRequest $request, Movie $movie)
+    {
+        $datetime = $request->datetime;
+        $date = Carbon::parse($datetime)->toDateString();
+
+        return Seance::query()
+            ->select([
+                'seances.id as seance_id',
+                'show_time',
+                'halls.name as hall_name',
+                'price_adult',
+                'price_kid',
+                'price_student',
+                'price_vip',
+                'cinemas.id as cinema_id',
+                'cinemas.name as cinema_name',
+                'cinemas.address as cinema_address',
+                'cinemas.phone as cinema_phone',
+            ])
+            ->leftJoin('halls', 'seances.hall_id', '=', 'halls.id')
+            ->leftJoin('cinemas', 'halls.cinema_id', '=', 'cinemas.id')
+            ->where('seances.movie_id', $movie->id)
+            ->where('seances.show_time', '>', $datetime)
+            ->whereDate('seances.show_time', '=', $date)
+            ->paginate();
+
     }
 }

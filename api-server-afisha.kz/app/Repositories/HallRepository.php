@@ -15,7 +15,7 @@ class HallRepository
                     ->whereDate('seances.show_time', '=', $date);
             })
             ->join('movies', 'movies.id', 'seances.movie_id')
-            ->select('halls.name as hall_name', 'movies.id as movie_id', 'movies.name as movie_name', 'seances.id as seance_id', 'seances.show_time', 'seances.price_adult', 'seances.price_kid', 'seances.price_student', 'seances.price_vip')
+            ->select('seances.id as seance_id', 'seances.show_time', 'halls.name as hall_name', 'seances.price_adult', 'seances.price_kid', 'seances.price_student', 'seances.price_vip', 'movies.id as movie_id', 'movies.name as movie_name')
             ->orderBy('halls.id')
             ->paginate($perPage);
     }
