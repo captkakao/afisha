@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Event\CreateEventRequest;
 use App\Http\Requests\Event\UpdateEventRequest;
 use App\Http\Resources\Event\EventCollection;
+use App\Http\Resources\Image\ImageCollection;
 use App\Models\Cinema;
 use App\Models\Event;
 use App\Services\Image\ImageUploaderService;
@@ -50,11 +51,11 @@ class EventController extends Controller
         return response(null, Response::HTTP_NO_CONTENT);
     }
 
-    public function uploadImages(Request $request, ImageUploaderService $imageUploaderService)
+    public function uploadImages(Request $request, ImageUploaderService $imageUploaderService): ImageCollection
     {
         $imageFiles = $request->file('images');
 
         $images = $imageUploaderService->uploadArray($imageFiles);
-        return $images;
+        return new ImageCollection($images);
     }
 }

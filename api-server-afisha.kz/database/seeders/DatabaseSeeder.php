@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             MovieGradeSeeder::class,
             HallSeeder::class,
             SeanceSeeder::class,
+            NewsSeeder::class,
         ]);
 
     }

@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 
 class MovieController extends Controller
 {
-    public function uploadImages(Request $request, ImageUploaderService $imageUploaderService)
+    public function uploadImages(Request $request, ImageUploaderService $imageUploaderService): ImageCollection
     {
         $imageFiles = $request->file('images');
 
-        $images =  $imageUploaderService->uploadArray($imageFiles);
+        $images = $imageUploaderService->uploadArray($imageFiles);
 
         return new ImageCollection($images);
     }

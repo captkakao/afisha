@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Available\CityController;
 use App\Http\Controllers\Available\DateTimeController;
@@ -87,7 +88,6 @@ Route::group(['prefix' => 'cinema',], function () {
 
         // CINEMA EVENTS
         Route::prefix('event')->group(function () {
-            Route::get('', [EventController::class, 'getAllEvents']);
             Route::post('images', [EventController::class, 'uploadImages']);
             Route::put('{event}', [EventController::class, 'update'])->middleware('can:update,event');
             Route::delete('{event}', [EventController::class, 'delete'])->middleware('can:delete,event');
@@ -100,6 +100,11 @@ Route::group(['prefix' => 'cinema',], function () {
     Route::get('{cinema}', [CinemaController::class, 'getCinema']);
     Route::get('{cinema}/seances', [CinemaController::class, 'getSeances']);
     Route::get('city/{city}', [CinemaController::class, 'getCityCinemas']);
+});
+
+Route::group(['prefix' => 'news',], function () {
+    Route::get('', [NewsController::class, 'getNews']);
+    Route::get('{news}', [NewsController::class, 'getNewsById']);
 });
 
 Route::group(['prefix' => 'movie',], function () {
