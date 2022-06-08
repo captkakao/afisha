@@ -9,8 +9,11 @@ use App\Models\Language;
 use App\Models\Movie;
 use App\Models\Seance;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Response;
 
 class MovieController extends Controller
 {
@@ -18,18 +21,19 @@ class MovieController extends Controller
     {
         $languageId = Language::where('code', App::currentLocale())->first()->id;
 
-        return new MovieResource($movie->select(
-            'movies.id',
-            'name',
-            'original_name',
-            DB::raw('AVG(movie_user_grade.grade) as movie_rate'),
-            DB::raw('count(movie_user_grade.grade) as grade_count'),
-        )->with(['detail' => function ($query) use ($languageId) {
-            $query->with(['country.countryTranslation' => function ($q) use ($languageId) {
-                $q->where('language_id', $languageId);
-            }]);
-            $query->with(['producer', 'casts']);
-        }])
+        return new MovieResource(Movie::query()
+            ->select(
+                'movies.id',
+                'name',
+                'original_name',
+                DB::raw('AVG(movie_user_grade.grade) as movie_rate'),
+                DB::raw('count(movie_user_grade.grade) as grade_count'),
+            )->with(['detail' => function ($query) use ($languageId) {
+                $query->with(['country.countryTranslation' => function ($q) use ($languageId) {
+                    $q->where('language_id', $languageId);
+                }]);
+                $query->with(['producer', 'casts']);
+            }])
             ->with(['genres' => function ($query) use ($languageId) {
                 $query->select('genres.id');
                 $query->with(['genreTranslation' => function ($q) use ($languageId) {
@@ -40,6 +44,7 @@ class MovieController extends Controller
             ->with(['images' => function ($query) {
                 $query->where('is_logo', false);
             }])
+            ->where('movies.id', $movie->id)
             ->leftJoin('movie_user_grade', 'movies.id', '=', 'movie_user_grade.movie_id')
             ->leftJoin('movie_details', 'movies.id', '=', 'movie_details.movie_id')
             ->groupBy('movies.id')
@@ -132,7 +137,7 @@ class MovieController extends Controller
     public function getMovieSeances(GetSeancesRequest $request, Movie $movie)
     {
         $datetime = $request->datetime;
-        $date = Carbon::parse($datetime)->toDateString();
+        $date     = Carbon::parse($datetime)->toDateString();
 
         return Seance::query()
             ->select([
@@ -154,6 +159,12 @@ class MovieController extends Controller
             ->where('seances.show_time', '>', $datetime)
             ->whereDate('seances.show_time', '=', $date)
             ->paginate();
+    }
 
+    public function rateMovie(Request $request, Movie $movie)
+    {
+        $movie->userGrades()->sync([Auth::id() => ['grade' => $request->grade]], false);
+
+        return response(null, Response::HTTP_OK);
     }
 }

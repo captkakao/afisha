@@ -111,6 +111,11 @@ Route::group(['prefix' => 'movie',], function () {
     Route::get('{movie}', [MovieController::class, 'getMovie']);
     Route::get('{movie}/seances', [MovieController::class, 'getMovieSeances']);
 
+
+    Route::middleware(['auth:sanctum'])->group(function () {
+        Route::post('{movie}/rate', [MovieController::class, 'rateMovie']);
+    });
+
     Route::group(['prefix' => 'showing',], function () {
         Route::get('now', [MovieController::class, 'getShowingNowMovies']);
         Route::get('soon', [MovieController::class, 'getShowingSoonMovies']);

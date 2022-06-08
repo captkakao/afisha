@@ -32,4 +32,9 @@ class Movie extends Model
     {
         return $this->belongsToMany(Image::class, 'movie_images');
     }
+
+    public function userGrades(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'movie_user_grade');
+    }
 }
