@@ -14,8 +14,9 @@ class TestController extends Controller
 {
     public function test()
     {
-        return Movie::with(['images' => function ($q) {
-            $q->where('is_logo', true)->first();
-        }])->first();
+        $movie = Movie::where('id', 7)
+            ->first();
+
+        dd($movie->favouriteUsers()->where('user_id', 2)->exists());
     }
 }

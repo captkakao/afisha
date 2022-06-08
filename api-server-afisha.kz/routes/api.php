@@ -114,6 +114,7 @@ Route::group(['prefix' => 'movie',], function () {
 
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('{movie}/rate', [MovieController::class, 'rateMovie']);
+        Route::post('{movie}/favourite', [MovieController::class, 'addRemoveFavourite']);
     });
 
     Route::group(['prefix' => 'showing',], function () {

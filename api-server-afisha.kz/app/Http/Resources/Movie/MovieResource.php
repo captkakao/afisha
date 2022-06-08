@@ -4,9 +4,9 @@ namespace App\Http\Resources\Movie;
 
 use App\Http\Resources\Genre\GenreCollection;
 use App\Http\Resources\Image\ImageCollection;
-use App\Http\Resources\Image\ImageResource;
 use App\Http\Resources\MovieUser\CastCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class MovieResource extends JsonResource
 {
@@ -20,6 +20,12 @@ class MovieResource extends JsonResource
      */
     public function toArray($request)
     {
+        $authToken = \request()->bearerToken();
+        $accessToken = PersonalAccessToken::findToken($authToken);
+        $currentUser = $accessToken ? $accessToken->tokenable : null;
+
+        $isMovieInFavourite = $currentUser ? $this->favouriteUsers()->where('user_id', $currentUser->id)->exists() : null;
+
         return [
             'id'            => $this->id,
             'name'          => $this->name,
@@ -27,6 +33,7 @@ class MovieResource extends JsonResource
             'trailer_link'  => $this->detail->trailer_link,
             'movie_rate'    => $this->movie_rate ? round($this->movie_rate, 1) : null,
             'grade_count'   => $this->grade_count,
+            'in_favourite'  => $isMovieInFavourite,
             'detail'        => [
                 'description'      => $this->detail->description,
                 'production_year'  => $this->detail->production_year,
@@ -40,7 +47,7 @@ class MovieResource extends JsonResource
                 ],
                 'casts'            => new CastCollection($this->detail->casts),
                 'genres'           => new GenreCollection($this->genres),
-                'images'    => new ImageCollection($this->images),
+                'images'           => new ImageCollection($this->images),
             ],
 
         ];

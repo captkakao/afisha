@@ -13,7 +13,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Symfony\Component\HttpFoundation\Response;
 
 class MovieController extends Controller
 {
@@ -164,7 +163,17 @@ class MovieController extends Controller
     public function rateMovie(Request $request, Movie $movie)
     {
         $movie->userGrades()->sync([Auth::id() => ['grade' => $request->grade]], false);
+    }
 
-        return response(null, Response::HTTP_OK);
+    public function addRemoveFavourite(Movie $movie)
+    {
+        $currentUser = Auth::user();
+        $favouriteMovie = $currentUser->favouriteMovies()->where('movie_id', $movie->id)->first();
+
+        if (!$favouriteMovie) {
+            $currentUser->favouriteMovies()->attach($movie->id);
+        } else {
+            $currentUser->favouriteMovies()->detach($movie->id);
+        }
     }
 }
