@@ -37,7 +37,7 @@ class EmailVerificationService
             $emailVerification->save();
         }
 
-        $verificationLink = config('services.afisha_frontend_url') . '/some-url/confirm-email?email=' . $this->user->email . '&confirmation_code=' . $confirmationCode;
+        $verificationLink = config('services.afisha_frontend_url') . '/email-verification?email=' . $this->user->email . '&confirmation_code=' . $confirmationCode;
 
         $details = [
             'view' => 'verification.email.verification-link',
