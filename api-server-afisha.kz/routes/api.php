@@ -6,6 +6,7 @@ use App\Http\Controllers\Available\CityController;
 use App\Http\Controllers\Available\DateTimeController;
 use App\Http\Controllers\Cinema\CinemaController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\Verification\EmailVerificationController;
 use App\Http\Controllers\Event\EventController;
 use App\Http\Controllers\Hall\HallController;
@@ -65,6 +66,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::delete('', [UserController::class, 'removeAvatar']);
         });
         Route::get('favourite-movies', [UserController::class, 'getFavouriteMovies']);
+    });
+
+    // USER DATA
+    Route::group(['prefix' => 'ticket',], function () {
+        Route::post('send', [TicketController::class, 'sendTicket']);
     });
 });
 
