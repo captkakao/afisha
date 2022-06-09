@@ -64,6 +64,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::post('', [UserController::class, 'uploadAvatar']);
             Route::delete('', [UserController::class, 'removeAvatar']);
         });
+        Route::get('favourite-movies', [UserController::class, 'getFavouriteMovies']);
     });
 });
 
