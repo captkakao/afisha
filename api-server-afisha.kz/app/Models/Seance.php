@@ -25,4 +25,9 @@ class Seance extends Model
     {
         return $this->belongsTo(Hall::class);
     }
+
+    public function movie(): BelongsTo
+    {
+        return $this->belongsTo(Movie::class);
+    }
 }

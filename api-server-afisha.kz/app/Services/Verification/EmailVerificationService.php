@@ -2,18 +2,22 @@
 
 namespace App\Services\Verification;
 
+use App\Jobs\SendTicketJob;
 use App\Jobs\SendVerificationLinkJob;
 use App\Mail\EmailVerificationMail;
+use App\Mail\TicketMail;
+use App\Models\Seance;
 use App\Models\User;
 use App\Models\UserEmailVerification;
 use Carbon\Carbon;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Str;
 
 class EmailVerificationService
 {
-    private User $user;
+    private User|Authenticatable $user;
 
-    public function __construct(User $user)
+    public function __construct(User|Authenticatable $user)
     {
         $this->user = $user;
     }
@@ -85,5 +89,23 @@ class EmailVerificationService
             return true;
         }
         return false;
+    }
+
+    public function sendTicket(int $seanceId, int $row, int $column): void
+    {
+        $seance = Seance::query()
+            ->with('movie')
+            ->where('id', $seanceId)
+            ->first();
+
+        $details = [
+            'view' => 'ticket.email.ticket',
+            'title' => 'Ticket to ' . $seance->movie->name,
+            'body' => [
+                'text' => 'Ticket to ' . $seance->movie->name . ' at ' . $seance->show_time . '. Your seat is at row: ' . $row . ' column: ' . $column . '. Hava a nice seance!',
+            ],
+        ];
+
+        SendTicketJob::dispatch($this->user->email, new TicketMail($details));
     }
 }

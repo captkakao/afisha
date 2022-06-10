@@ -10,7 +10,8 @@ class SendTicketRequest extends FormRequest
     {
         return [
             'seance_id' => ['required', 'exists:seances,id'],
-//            'seance_id' => ['required', 'exists:seances,id'],
+            'row'       => ['required', 'integer'],
+            'column'    => ['required', 'integer'],
         ];
     }
 }
